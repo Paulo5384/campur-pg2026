@@ -1,0 +1,315 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans,system-ui,sans-serif);background:var(--color-background-tertiary,#f5f5f3);color:var(--color-text-primary,#1a1a18)}
+.deck{max-width:820px;margin:0 auto;padding:1rem}
+.nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:8px}
+.nav-btn{font-size:13px;padding:6px 16px;border-radius:8px;border:0.5px solid var(--color-border-secondary,rgba(0,0,0,.25));background:var(--color-background-primary,#fff);cursor:pointer;color:var(--color-text-primary);display:flex;align-items:center;gap:5px;transition:all .15s}
+.nav-btn:hover{background:var(--color-background-secondary,#f0f0ee)}
+.nav-btn:disabled{opacity:.35;cursor:default}
+.slide-counter{font-size:13px;color:var(--color-text-secondary,#666)}
+.slide{background:var(--color-background-primary,#fff);border-radius:var(--border-radius-lg,12px);border:0.5px solid var(--color-border-tertiary,rgba(0,0,0,.12));padding:2.5rem 2.5rem 2rem;min-height:440px;display:none;flex-direction:column;position:relative}
+.slide.active{display:flex}
+.slide-tag{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem}
+.slide-title{font-size:26px;font-weight:500;line-height:1.25;margin-bottom:.5rem}
+.slide-sub{font-size:15px;color:var(--color-text-secondary);margin-bottom:1.5rem;line-height:1.5}
+.slide-num{position:absolute;bottom:1.25rem;right:1.5rem;font-size:12px;color:var(--color-text-tertiary,#999)}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:.75rem;flex-wrap:wrap}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--color-border-secondary,rgba(0,0,0,.2));cursor:pointer;transition:all .15s;border:none;padding:0}
+.dot.active{background:#185FA5;width:20px;border-radius:4px}
+
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
+.stat{background:var(--color-background-secondary,#f0f0ee);border-radius:var(--border-radius-md,8px);padding:.9rem 1rem}
+.stat-label{font-size:12px;color:var(--color-text-secondary);margin-bottom:4px}
+.stat-val{font-size:22px;font-weight:500}
+.green{color:#0F6E56}.amber{color:#854F0B}.red{color:#A32D2D}
+
+.item-list{display:flex;flex-direction:column;gap:8px;flex:1}
+.item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;border:0.5px solid var(--color-border-tertiary,rgba(0,0,0,.12));font-size:14px}
+.item-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.item-right{margin-left:auto;font-weight:500;font-size:14px;white-space:nowrap}
+.item-label{flex:1;color:var(--color-text-primary)}
+.item-sub{font-size:12px;color:var(--color-text-secondary);margin-top:1px}
+
+.prog-bar{height:10px;border-radius:5px;background:var(--color-border-tertiary,rgba(0,0,0,.1));margin-top:6px;overflow:hidden}
+.prog-fill{height:100%;border-radius:5px;background:#1D9E75;transition:width .6s}
+.prog-fill.amber-fill{background:#EF9F27}
+.prog-fill.red-fill{background:#E24B4A}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;flex:1}
+.col-card{background:var(--color-background-secondary,#f0f0ee);border-radius:var(--border-radius-lg,12px);padding:1.25rem}
+.col-card h3{font-size:14px;font-weight:500;margin-bottom:.75rem;color:var(--color-text-secondary)}
+.pill{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;margin-bottom:6px}
+.p-green{background:#C0DD97;color:#27500A}
+.p-amber{background:#FAC775;color:#633806}
+.p-blue{background:#B5D4F4;color:#0C447C}
+.p-gray{background:#D3D1C7;color:#444441}
+
+.timeline{display:flex;flex-direction:column;gap:10px;flex:1}
+.tl-item{display:flex;gap:12px;align-items:flex-start}
+.tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.tl-past{background:#B4B2A9}
+.tl-now{background:#EF9F27}
+.tl-future{background:#1D9E75}
+.tl-body{flex:1}
+.tl-date{font-size:12px;color:var(--color-text-secondary);margin-bottom:1px}
+.tl-desc{font-size:14px}
+.tl-line{width:1px;height:16px;background:var(--color-border-tertiary,rgba(0,0,0,.12));margin-left:4px}
+
+.vote-box{border:0.5px solid var(--color-border-secondary,rgba(0,0,0,.25));border-radius:var(--border-radius-lg,12px);padding:1.25rem;margin-top:1rem}
+.vote-label{font-size:13px;color:var(--color-text-secondary);margin-bottom:.5rem}
+.vote-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.vote-bar-wrap{flex:1;height:10px;border-radius:5px;background:var(--color-border-tertiary,rgba(0,0,0,.1));overflow:hidden}
+.vote-bar{height:100%;border-radius:5px}
+.v-yes{background:#1D9E75}
+.v-no{background:#E24B4A}
+.vote-count{font-size:13px;font-weight:500;min-width:50px;text-align:right}
+
+.cover-badge{display:inline-flex;align-items:center;gap:6px;background:#E6F1FB;color:#0C447C;border-radius:20px;padding:5px 14px;font-size:13px;font-weight:500;margin-bottom:1.5rem}
+.divider{height:0.5px;background:var(--color-border-tertiary,rgba(0,0,0,.12));margin:1rem 0}
+</style>
+
+<div class="deck">
+<div class="nav">
+  <button class="nav-btn" id="btn-prev" onclick="move(-1)" disabled><i class="ti ti-arrow-left" aria-hidden="true"></i> Anterior</button>
+  <span class="slide-counter" id="counter">1 / 7</span>
+  <button class="nav-btn" id="btn-next" onclick="move(1)">Siguiente <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+</div>
+
+<!-- SLIDE 1: PORTADA -->
+<div class="slide active" id="s0">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+    <div class="cover-badge"><i class="ti ti-school" aria-hidden="true"></i> Playgroup PG 2026 · Pumahue Puerto Montt</div>
+    <div class="slide-title" style="font-size:32px">2ª Reunión de Apoderados</div>
+    <div class="slide-sub" style="margin-top:.75rem">Junio 2026 · CAMPUR Playgroup</div>
+    <div class="divider"></div>
+    <div style="display:flex;gap:2rem;margin-top:.5rem">
+      <div><div style="font-size:12px;color:var(--color-text-secondary)">Coordinación <span style="color:var(--color-text-tertiary,#999)">· Presidenta</span></div><div style="font-weight:500;font-size:14px">Mandy</div></div>
+      <div><div style="font-size:12px;color:var(--color-text-secondary)">Aprovechamiento <span style="color:var(--color-text-tertiary,#999)">· Tesorera</span></div><div style="font-weight:500;font-size:14px">Digna</div></div>
+      <div><div style="font-size:12px;color:var(--color-text-secondary)">Madurez <span style="color:var(--color-text-tertiary,#999)">· Secretario</span></div><div style="font-weight:500;font-size:14px">Paulo</div></div>
+      <div><div style="font-size:12px;color:var(--color-text-secondary)">Relaciones <span style="color:var(--color-text-tertiary,#999)">· RR.PP.</span></div><div style="font-weight:500;font-size:14px">Héctor</div></div>
+      <div><div style="font-size:12px;color:var(--color-text-secondary)">Unidad <span style="color:var(--color-text-tertiary,#999)">· Vocal</span></div><div style="font-weight:500;font-size:14px">Liset</div></div>
+      <div><div style="font-size:12px;color:var(--color-text-secondary)">Pastoral <span style="color:var(--color-text-tertiary,#999)">· Vocal</span></div><div style="font-weight:500;font-size:14px">Samuel</div></div>
+    </div>
+  </div>
+  <div class="slide-num">1</div>
+</div>
+
+<!-- SLIDE 2: AGENDA -->
+<div class="slide" id="s1">
+  <div class="slide-tag">Hoy veremos</div>
+  <div class="slide-title">Agenda de la reunión</div>
+  <div class="item-list">
+    <div class="item">
+      <div class="item-icon" style="background:#E6F1FB;color:#185FA5"><i class="ti ti-cash" aria-hidden="true"></i></div>
+      <div><div class="item-label">Estado de recaudación y gastos</div><div class="item-sub">Resumen de cuotas y gastos mar–may</div></div>
+    </div>
+    <div class="item">
+      <div class="item-icon" style="background:#EAF3DE;color:#3B6D11"><i class="ti ti-trending-up" aria-hidden="true"></i></div>
+      <div><div class="item-label">Propuesta: ajuste de cuota</div><div class="item-sub">De $5.000 a $10.000 desde junio</div></div>
+    </div>
+    <div class="item">
+      <div class="item-icon" style="background:#FAEEDA;color:#854F0B"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+      <div><div class="item-label">Paseo de fin de año</div><div class="item-sub">Entre Campos · programa y presupuesto</div></div>
+    </div>
+    <div class="item">
+      <div class="item-icon" style="background:#EEEDFE;color:#534AB7"><i class="ti ti-calendar" aria-hidden="true"></i></div>
+      <div><div class="item-label">Fechas importantes</div><div class="item-sub">Segundo semestre</div></div>
+    </div>
+    <div class="item">
+      <div class="item-icon" style="background:#F1EFE8;color:#5F5E5A"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+      <div><div class="item-label">Preguntas y acuerdos</div></div>
+    </div>
+  </div>
+  <div class="slide-num">2</div>
+</div>
+
+<!-- SLIDE 3: FINANZAS RESUMEN -->
+<div class="slide" id="s2">
+  <div class="slide-tag">Finanzas</div>
+  <div class="slide-title">Estado de recaudación</div>
+  <div class="slide-sub">Cuota actual: $5.000/mes · Marzo a mayo 2026</div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-label">Saldo en cuenta</div><div class="stat-val green">$415.506</div></div>
+    <div class="stat"><div class="stat-label">Gastos realizados</div><div class="stat-val amber">$75.435</div></div>
+    <div class="stat"><div class="stat-label">Familias con pagos</div><div class="stat-val">19 / 22</div></div>
+  </div>
+  <div style="font-size:13px;font-weight:500;margin-bottom:.6rem;color:var(--color-text-secondary)">Gastos marzo–mayo detalle</div>
+  <div class="item-list">
+    <div class="item" style="padding:8px 14px">
+      <div class="item-label" style="font-size:13px">Diferencial alfombras sala</div>
+      <div class="item-right" style="font-size:13px;color:var(--color-text-secondary)">$10.375</div>
+    </div>
+    <div class="item" style="padding:8px 14px">
+      <div class="item-label" style="font-size:13px">Maicena actividad apoderados</div>
+      <div class="item-right" style="font-size:13px;color:var(--color-text-secondary)">$9.780</div>
+    </div>
+    <div class="item" style="padding:8px 14px">
+      <div class="item-label" style="font-size:13px">Regalos cumpleaños misses</div>
+      <div class="item-right" style="font-size:13px;color:var(--color-text-secondary)">$26.880</div>
+    </div>
+    <div class="item" style="padding:8px 14px">
+      <div class="item-label" style="font-size:13px">Material actividad "del mar"</div>
+      <div class="item-right" style="font-size:13px;color:var(--color-text-secondary)">$5.600</div>
+    </div>
+    <div class="item" style="padding:8px 14px">
+      <div class="item-label" style="font-size:13px">Material actividad apoderados</div>
+      <div class="item-right" style="font-size:13px;color:var(--color-text-secondary)">$22.800</div>
+    </div>
+  </div>
+  <div class="slide-num">3</div>
+</div>
+
+<!-- SLIDE 4: PROPUESTA CUOTA -->
+<div class="slide" id="s3">
+  <div class="slide-tag">Para decidir hoy</div>
+  <div class="slide-title">Propuesta de ajuste de cuota</div>
+  <div class="slide-sub">El presupuesto del paseo y actividades de fin de año supera lo proyectado con cuota actual.</div>
+  <div class="two-col">
+    <div class="col-card">
+      <h3>Cuota actual ($5.000/mes)</h3>
+      <div style="font-size:28px;font-weight:500;color:#854F0B;margin-bottom:.5rem">$1.110.000</div>
+      <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:.75rem">Total proyectado año completo</div>
+      <div class="prog-bar"><div class="prog-fill amber-fill" style="width:57%"></div></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:5px">57% del presupuesto requerido</div>
+      <div style="margin-top:1rem;font-size:13px;color:var(--color-text-secondary)">No alcanza a cubrir el paseo ni actividades de fin de año.</div>
+    </div>
+    <div class="col-card" style="border:1.5px solid #1D9E75">
+      <div class="pill p-green" style="margin-bottom:.5rem">Propuesta CAMPUR</div>
+      <h3>Cuota ajustada ($10.000 jun–dic)</h3>
+      <div style="font-size:28px;font-weight:500;color:#0F6E56;margin-bottom:.5rem">$1.870.000</div>
+      <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:.75rem">Total proyectado año completo</div>
+      <div class="prog-bar"><div class="prog-fill" style="width:96%"></div></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:5px">Cubre paseo + actividades + margen</div>
+      <div style="margin-top:1rem;font-size:13px;color:var(--color-text-secondary)">+$5.000/mes por 7 meses. Todo lo recaudado se rinde a la comunidad.</div>
+    </div>
+  </div>
+  <div class="vote-box">
+    <div class="vote-label">Encuesta previa (respondida en WhatsApp)</div>
+    <div class="vote-row">
+      <span style="font-size:13px;min-width:30px">Sí</span>
+      <div class="vote-bar-wrap"><div class="vote-bar v-yes" id="vbar-yes" style="width:0%"></div></div>
+      <span class="vote-count" id="vcount-yes">— votos</span>
+    </div>
+    <div class="vote-row">
+      <span style="font-size:13px;min-width:30px">No</span>
+      <div class="vote-bar-wrap"><div class="vote-bar v-no" id="vbar-no" style="width:0%"></div></div>
+      <span class="vote-count" id="vcount-no">— votos</span>
+    </div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:6px">* Actualiza estos datos según el resultado real de la encuesta.</div>
+  </div>
+  <div class="slide-num">4</div>
+</div>
+
+<!-- SLIDE 5: PASEO -->
+<div class="slide" id="s4">
+  <div class="slide-tag">Paseo de fin de año</div>
+  <div class="slide-title">Entre Campos · Jornada completa</div>
+  <div class="slide-sub">~70–75 personas · Fecha a confirmar (nov–dic 2026)</div>
+  <div class="two-col">
+    <div>
+      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:.6rem">Programa del día</div>
+      <div class="item-list">
+        <div class="item" style="padding:8px 12px"><div class="item-icon" style="background:#E1F5EE;color:#0F6E56;width:28px;height:28px;font-size:14px"><i class="ti ti-paw" aria-hidden="true"></i></div><div class="item-label" style="font-size:13px">Visita guiada y animales</div></div>
+        <div class="item" style="padding:8px 12px"><div class="item-icon" style="background:#FAEEDA;color:#854F0B;width:28px;height:28px;font-size:14px"><i class="ti ti-horse" aria-hidden="true"></i></div><div class="item-label" style="font-size:13px">Cabalgata</div></div>
+        <div class="item" style="padding:8px 12px"><div class="item-icon" style="background:#EAF3DE;color:#3B6D11;width:28px;height:28px;font-size:14px"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div><div class="item-label" style="font-size:13px">Almuerzo tipo asado</div></div>
+        <div class="item" style="padding:8px 12px"><div class="item-icon" style="background:#EEEDFE;color:#534AB7;width:28px;height:28px;font-size:14px"><i class="ti ti-snowman" aria-hidden="true"></i></div><div class="item-label" style="font-size:13px">Visita Viejo Pascuero</div></div>
+        <div class="item" style="padding:8px 12px"><div class="item-icon" style="background:#E6F1FB;color:#185FA5;width:28px;height:28px;font-size:14px"><i class="ti ti-run" aria-hidden="true"></i></div><div class="item-label" style="font-size:13px">Juego libre interior/exterior</div></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:.6rem">Presupuesto proyectado</div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-lg,12px);padding:1rem">
+        <table style="width:100%;font-size:13px;border-collapse:collapse">
+          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Arriendo local (sin IVA)</td><td style="text-align:right;font-weight:500">$650.000</td></tr>
+          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Regalos niños/as</td><td style="text-align:right;font-weight:500">$440.000</td></tr>
+          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Regalo misses</td><td style="text-align:right;font-weight:500">$75.000</td></tr>
+          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Viejo Pascuero</td><td style="text-align:right;font-weight:500">$50.000</td></tr>
+          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Cabalgata</td><td style="text-align:right;font-weight:500">$50.000</td></tr>
+          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Disfraz Luly Pampim</td><td style="text-align:right;font-weight:500">$50.000</td></tr>
+          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Día del niño</td><td style="text-align:right;font-weight:500">$22.000</td></tr>
+          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Entry point + aseo</td><td style="text-align:right;font-weight:500">$70.000</td></tr>
+          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Comida</td><td style="text-align:right;color:var(--color-text-tertiary)">por cotizar</td></tr>
+          <tr style="border-top:0.5px solid var(--color-border-secondary,rgba(0,0,0,.2))">
+            <td style="padding:8px 0 4px;font-weight:500">Total confirmado</td>
+            <td style="text-align:right;font-weight:500;padding:8px 0 4px">$1.407.000</td>
+          </tr>
+          <tr><td style="padding:4px 0;color:#0F6E56;font-size:12px">Restante para comida</td><td style="text-align:right;color:#0F6E56;font-weight:500;font-size:12px">~$463.000</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">5</div>
+</div>
+
+<!-- SLIDE 6: FECHAS -->
+<div class="slide" id="s5">
+  <div class="slide-tag">Calendario</div>
+  <div class="slide-title">Fechas importantes</div>
+  <div class="slide-sub">Segundo semestre y próximas semanas</div>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-dot tl-now"></div><div class="tl-body"><div class="tl-date">4 jun 2026</div><div class="tl-desc">Green Day N°2 – Día del Medio Ambiente <span class="pill p-blue" style="font-size:10px">Mañana</span></div></div></div>
+    <div class="tl-line" style="margin-left:4px"></div>
+    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">6 jun 2026</div><div class="tl-desc">Bingo 8° Básico Bilingüe (sábado)</div></div></div>
+    <div class="tl-line" style="margin-left:4px"></div>
+    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">26 jun 2026</div><div class="tl-desc">Término de talleres y academias</div></div></div>
+    <div class="tl-line" style="margin-left:4px"></div>
+    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">29 jun 2026</div><div class="tl-desc">Feriado · colegio cerrado</div></div></div>
+    <div class="tl-line" style="margin-left:4px"></div>
+    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">30 jun – 2 jul 2026</div><div class="tl-desc">Jornada reducida · 1°–4°: 12:25 · 5°–IV°: 13:10</div></div></div>
+    <div class="tl-line" style="margin-left:4px"></div>
+    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">2 jul 2026</div><div class="tl-desc">Último día de clases 1° semestre</div></div></div>
+    <div class="tl-line" style="margin-left:4px"></div>
+    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">3 – 17 jul 2026</div><div class="tl-desc">Vacaciones de invierno</div></div></div>
+    <div class="tl-line" style="margin-left:4px"></div>
+    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">Nov–Dic 2026</div><div class="tl-desc">Paseo de curso · fecha a votar hoy <span class="pill p-amber" style="font-size:10px">Por confirmar</span></div></div></div>
+  </div>
+  <div class="slide-num">6</div>
+</div>
+
+<!-- SLIDE 7: CIERRE -->
+<div class="slide" id="s6">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+    <div style="width:56px;height:56px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem">
+      <i class="ti ti-heart" aria-hidden="true" style="font-size:26px;color:#0F6E56"></i>
+    </div>
+    <div class="slide-title" style="font-size:28px;margin-bottom:.75rem">Gracias por su presencia</div>
+    <div class="slide-sub" style="max-width:420px;margin:0 auto 1.5rem">Todo lo que hemos hecho este año es por el bienestar y la alegría de nuestros niños y niñas.</div>
+    <div class="divider" style="width:200px;margin:0 auto 1.5rem"></div>
+    <div style="display:flex;gap:1.5rem;justify-content:center">
+      <div style="text-align:center"><div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px">Cuenta Tenpo</div><div style="font-weight:500;font-size:13px">111117632311</div></div>
+      <div style="text-align:center"><div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px">Cuota desde junio</div><div style="font-weight:500;font-size:13px">$10.000/mes</div></div>
+    </div>
+  </div>
+  <div class="slide-num">7</div>
+</div>
+
+<div class="dots" id="dots"></div>
+</div>
+
+<script>
+const N=7;let cur=0;
+const dots=document.getElementById('dots');
+for(let i=0;i<N;i++){const b=document.createElement('button');b.className='dot'+(i===0?' active':'');b.setAttribute('aria-label','Slide '+(i+1));b.onclick=()=>go(i);dots.appendChild(b);}
+function go(n){
+  document.getElementById('s'+cur).classList.remove('active');
+  document.querySelectorAll('.dot')[cur].classList.remove('active');
+  cur=n;
+  document.getElementById('s'+cur).classList.add('active');
+  document.querySelectorAll('.dot')[cur].classList.add('active');
+  document.getElementById('counter').textContent=(cur+1)+' / '+N;
+  document.getElementById('btn-prev').disabled=cur===0;
+  document.getElementById('btn-next').disabled=cur===N-1;
+  if(cur===3)setTimeout(animVote,300);
+}
+function move(d){go(Math.max(0,Math.min(N-1,cur+d)));}
+function animVote(){
+  const yes=0,no=0,total=yes+no;
+  if(total===0)return;
+  const yp=Math.round(yes/total*100),np=Math.round(no/total*100);
+  document.getElementById('vbar-yes').style.width=yp+'%';
+  document.getElementById('vbar-no').style.width=np+'%';
+  document.getElementById('vcount-yes').textContent=yes+' votos';
+  document.getElementById('vcount-no').textContent=no+' votos';
+}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')move(1);if(e.key==='ArrowLeft')move(-1);});
+</script>
