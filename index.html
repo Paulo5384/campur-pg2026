@@ -1,286 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>2ª Reunión Apoderados · Playgroup PG 2026</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-sans,system-ui,sans-serif);background:var(--color-background-tertiary,#f5f5f3);color:var(--color-text-primary,#1a1a18)}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f5f5f3;color:#1a1a18;min-height:100vh}
 .deck{max-width:820px;margin:0 auto;padding:1rem}
-.nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:8px}
-.nav-btn{font-size:13px;padding:6px 16px;border-radius:8px;border:0.5px solid var(--color-border-secondary,rgba(0,0,0,.25));background:var(--color-background-primary,#fff);cursor:pointer;color:var(--color-text-primary);display:flex;align-items:center;gap:5px;transition:all .15s}
-.nav-btn:hover{background:var(--color-background-secondary,#f0f0ee)}
+.nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.nav-btn{font-size:13px;padding:6px 16px;border-radius:8px;border:0.5px solid rgba(0,0,0,.25);background:#fff;cursor:pointer;color:#1a1a18;display:flex;align-items:center;gap:5px;transition:all .15s}
+.nav-btn:hover{background:#f0f0ee}
 .nav-btn:disabled{opacity:.35;cursor:default}
-.slide-counter{font-size:13px;color:var(--color-text-secondary,#666)}
-.slide{background:var(--color-background-primary,#fff);border-radius:var(--border-radius-lg,12px);border:0.5px solid var(--color-border-tertiary,rgba(0,0,0,.12));padding:2.5rem 2.5rem 2rem;min-height:440px;display:none;flex-direction:column;position:relative}
+.counter{font-size:13px;color:#666}
+.slide{background:#fff;border-radius:12px;border:0.5px solid rgba(0,0,0,.12);padding:2.5rem;min-height:460px;display:none;flex-direction:column;position:relative}
 .slide.active{display:flex}
-.slide-tag{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem}
-.slide-title{font-size:26px;font-weight:500;line-height:1.25;margin-bottom:.5rem}
-.slide-sub{font-size:15px;color:var(--color-text-secondary);margin-bottom:1.5rem;line-height:1.5}
-.slide-num{position:absolute;bottom:1.25rem;right:1.5rem;font-size:12px;color:var(--color-text-tertiary,#999)}
-.dots{display:flex;gap:6px;justify-content:center;margin-top:.75rem;flex-wrap:wrap}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--color-border-secondary,rgba(0,0,0,.2));cursor:pointer;transition:all .15s;border:none;padding:0}
+.tag{font-size:11px;font-weight:500;color:#666;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.6rem}
+.title{font-size:26px;font-weight:500;line-height:1.25;margin-bottom:.4rem}
+.sub{font-size:15px;color:#666;margin-bottom:1.25rem;line-height:1.5}
+.num{position:absolute;bottom:1.25rem;right:1.5rem;font-size:12px;color:#999}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:.75rem}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.2);cursor:pointer;border:none;padding:0;transition:all .15s}
 .dot.active{background:#185FA5;width:20px;border-radius:4px}
+.divider{height:0.5px;background:rgba(0,0,0,.12);margin:1rem 0}
 
+/* stats */
 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
-.stat{background:var(--color-background-secondary,#f0f0ee);border-radius:var(--border-radius-md,8px);padding:.9rem 1rem}
-.stat-label{font-size:12px;color:var(--color-text-secondary);margin-bottom:4px}
+.stat{background:#f0f0ee;border-radius:8px;padding:.9rem 1rem}
+.stat-label{font-size:12px;color:#666;margin-bottom:4px}
 .stat-val{font-size:22px;font-weight:500}
-.green{color:#0F6E56}.amber{color:#854F0B}.red{color:#A32D2D}
+.green{color:#0F6E56}.amber{color:#854F0B}
 
-.item-list{display:flex;flex-direction:column;gap:8px;flex:1}
-.item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;border:0.5px solid var(--color-border-tertiary,rgba(0,0,0,.12));font-size:14px}
-.item-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
-.item-right{margin-left:auto;font-weight:500;font-size:14px;white-space:nowrap}
-.item-label{flex:1;color:var(--color-text-primary)}
-.item-sub{font-size:12px;color:var(--color-text-secondary);margin-top:1px}
+/* items */
+.items{display:flex;flex-direction:column;gap:8px;flex:1}
+.item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;border:0.5px solid rgba(0,0,0,.12);font-size:14px}
+.ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.item-right{margin-left:auto;font-weight:500;font-size:13px;color:#666;white-space:nowrap}
+.item-body{flex:1}
+.item-main{font-size:14px}
+.item-hint{font-size:12px;color:#666;margin-top:1px}
 
-.prog-bar{height:10px;border-radius:5px;background:var(--color-border-tertiary,rgba(0,0,0,.1));margin-top:6px;overflow:hidden}
-.prog-fill{height:100%;border-radius:5px;background:#1D9E75;transition:width .6s}
-.prog-fill.amber-fill{background:#EF9F27}
-.prog-fill.red-fill{background:#E24B4A}
+/* two col */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem;flex:1}
+.col{background:#f0f0ee;border-radius:12px;padding:1.25rem}
+.col h3{font-size:13px;font-weight:500;color:#666;margin-bottom:.75rem}
+.col.accent{border:1.5px solid #1D9E75}
+.pill{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;margin-bottom:6px;background:#C0DD97;color:#27500A}
+.big-num{font-size:28px;font-weight:500;margin-bottom:.4rem}
+.prog{height:10px;border-radius:5px;background:rgba(0,0,0,.1);margin-top:6px;overflow:hidden}
+.prog-fill{height:100%;border-radius:5px}
+.fill-green{background:#1D9E75}
+.fill-amber{background:#EF9F27}
+.hint{font-size:12px;color:#666;margin-top:5px}
+.note{font-size:13px;color:#666;margin-top:.75rem}
 
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;flex:1}
-.col-card{background:var(--color-background-secondary,#f0f0ee);border-radius:var(--border-radius-lg,12px);padding:1.25rem}
-.col-card h3{font-size:14px;font-weight:500;margin-bottom:.75rem;color:var(--color-text-secondary)}
-.pill{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;margin-bottom:6px}
-.p-green{background:#C0DD97;color:#27500A}
-.p-amber{background:#FAC775;color:#633806}
-.p-blue{background:#B5D4F4;color:#0C447C}
-.p-gray{background:#D3D1C7;color:#444441}
+/* team */
+.team{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:.5rem}
+.member .role{font-size:12px;color:#666;margin-bottom:3px}
+.member .role span{color:#999;font-size:11px}
+.member .name{font-weight:500;font-size:14px}
 
-.timeline{display:flex;flex-direction:column;gap:10px;flex:1}
-.tl-item{display:flex;gap:12px;align-items:flex-start}
+/* gastos table */
+.gtable{width:100%;font-size:13px;border-collapse:collapse}
+.gtable td{padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,.08)}
+.gtable td:last-child{text-align:right;font-weight:500}
+.gtable tr.total td{font-weight:500;border-top:0.5px solid rgba(0,0,0,.2);border-bottom:none;padding-top:8px}
+.gtable tr.resto td{color:#0F6E56;font-size:12px;border-bottom:none}
+
+/* timeline */
+.tl{display:flex;flex-direction:column;gap:0;flex:1}
+.tl-item{display:flex;gap:12px;align-items:flex-start;padding:6px 0}
 .tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
-.tl-past{background:#B4B2A9}
-.tl-now{background:#EF9F27}
-.tl-future{background:#1D9E75}
-.tl-body{flex:1}
-.tl-date{font-size:12px;color:var(--color-text-secondary);margin-bottom:1px}
+.d-now{background:#EF9F27}.d-fut{background:#1D9E75}
+.tl-body{flex:1;border-bottom:0.5px solid rgba(0,0,0,.07);padding-bottom:6px}
+.tl-date{font-size:12px;color:#666;margin-bottom:1px}
 .tl-desc{font-size:14px}
-.tl-line{width:1px;height:16px;background:var(--color-border-tertiary,rgba(0,0,0,.12));margin-left:4px}
+.badge-sm{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;margin-left:6px;background:#FAC775;color:#633806;vertical-align:middle}
+.badge-blue{background:#B5D4F4;color:#0C447C}
 
-.vote-box{border:0.5px solid var(--color-border-secondary,rgba(0,0,0,.25));border-radius:var(--border-radius-lg,12px);padding:1.25rem;margin-top:1rem}
-.vote-label{font-size:13px;color:var(--color-text-secondary);margin-bottom:.5rem}
-.vote-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.vote-bar-wrap{flex:1;height:10px;border-radius:5px;background:var(--color-border-tertiary,rgba(0,0,0,.1));overflow:hidden}
-.vote-bar{height:100%;border-radius:5px}
-.v-yes{background:#1D9E75}
-.v-no{background:#E24B4A}
-.vote-count{font-size:13px;font-weight:500;min-width:50px;text-align:right}
-
+/* cover badge */
 .cover-badge{display:inline-flex;align-items:center;gap:6px;background:#E6F1FB;color:#0C447C;border-radius:20px;padding:5px 14px;font-size:13px;font-weight:500;margin-bottom:1.5rem}
-.divider{height:0.5px;background:var(--color-border-tertiary,rgba(0,0,0,.12));margin:1rem 0}
-</style>
 
+/* cierre */
+.heart-circle{width:56px;height:56px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:28px}
+.tenpo-row{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.tenpo-item{text-align:center}
+.tenpo-label{font-size:12px;color:#666;margin-bottom:4px}
+.tenpo-val{font-weight:500;font-size:13px}
+</style>
+</head>
+<body>
 <div class="deck">
 <div class="nav">
-  <button class="nav-btn" id="btn-prev" onclick="move(-1)" disabled><i class="ti ti-arrow-left" aria-hidden="true"></i> Anterior</button>
-  <span class="slide-counter" id="counter">1 / 7</span>
-  <button class="nav-btn" id="btn-next" onclick="move(1)">Siguiente <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  <button class="nav-btn" id="btn-prev" onclick="move(-1)" disabled>&#8592; Anterior</button>
+  <span class="counter" id="counter">1 / 7</span>
+  <button class="nav-btn" id="btn-next" onclick="move(1)">Siguiente &#8594;</button>
 </div>
 
-<!-- SLIDE 1: PORTADA -->
+<!-- S1 PORTADA -->
 <div class="slide active" id="s0">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-    <div class="cover-badge"><i class="ti ti-school" aria-hidden="true"></i> Playgroup PG 2026 · Pumahue Puerto Montt</div>
-    <div class="slide-title" style="font-size:32px">2ª Reunión de Apoderados</div>
-    <div class="slide-sub" style="margin-top:.75rem">Junio 2026 · CAMPUR Playgroup</div>
+    <div class="cover-badge">&#127979; Playgroup PG 2026 · Pumahue Puerto Montt</div>
+    <div class="title" style="font-size:32px">2ª Reunión de Apoderados</div>
+    <div class="sub" style="margin-top:.75rem">Junio 2026 · CAMPUR Playgroup</div>
     <div class="divider"></div>
-    <div style="display:flex;gap:2rem;margin-top:.5rem">
-      <div><div style="font-size:12px;color:var(--color-text-secondary)">Coordinación <span style="color:var(--color-text-tertiary,#999)">· Presidenta</span></div><div style="font-weight:500;font-size:14px">Mandy</div></div>
-      <div><div style="font-size:12px;color:var(--color-text-secondary)">Aprovechamiento <span style="color:var(--color-text-tertiary,#999)">· Tesorera</span></div><div style="font-weight:500;font-size:14px">Digna</div></div>
-      <div><div style="font-size:12px;color:var(--color-text-secondary)">Madurez <span style="color:var(--color-text-tertiary,#999)">· Secretario</span></div><div style="font-weight:500;font-size:14px">Paulo</div></div>
-      <div><div style="font-size:12px;color:var(--color-text-secondary)">Relaciones <span style="color:var(--color-text-tertiary,#999)">· RR.PP.</span></div><div style="font-weight:500;font-size:14px">Héctor</div></div>
-      <div><div style="font-size:12px;color:var(--color-text-secondary)">Unidad <span style="color:var(--color-text-tertiary,#999)">· Vocal</span></div><div style="font-weight:500;font-size:14px">Liset</div></div>
-      <div><div style="font-size:12px;color:var(--color-text-secondary)">Pastoral <span style="color:var(--color-text-tertiary,#999)">· Vocal</span></div><div style="font-weight:500;font-size:14px">Samuel</div></div>
+    <div class="team">
+      <div class="member"><div class="role">Coordinación <span>· Presidenta</span></div><div class="name">Mandy</div></div>
+      <div class="member"><div class="role">Aprovechamiento <span>· Tesorera</span></div><div class="name">Digna</div></div>
+      <div class="member"><div class="role">Madurez <span>· Secretario</span></div><div class="name">Paulo</div></div>
+      <div class="member"><div class="role">Relaciones <span>· RR.PP.</span></div><div class="name">Héctor</div></div>
+      <div class="member"><div class="role">Unidad <span>· Vocal</span></div><div class="name">Liset</div></div>
+      <div class="member"><div class="role">Pastoral <span>· Vocal</span></div><div class="name">Samuel</div></div>
     </div>
   </div>
-  <div class="slide-num">1</div>
+  <div class="num">1</div>
 </div>
 
-<!-- SLIDE 2: AGENDA -->
+<!-- S2 AGENDA -->
 <div class="slide" id="s1">
-  <div class="slide-tag">Hoy veremos</div>
-  <div class="slide-title">Agenda de la reunión</div>
-  <div class="item-list">
-    <div class="item">
-      <div class="item-icon" style="background:#E6F1FB;color:#185FA5"><i class="ti ti-cash" aria-hidden="true"></i></div>
-      <div><div class="item-label">Estado de recaudación y gastos</div><div class="item-sub">Resumen de cuotas y gastos mar–may</div></div>
-    </div>
-    <div class="item">
-      <div class="item-icon" style="background:#EAF3DE;color:#3B6D11"><i class="ti ti-trending-up" aria-hidden="true"></i></div>
-      <div><div class="item-label">Propuesta: ajuste de cuota</div><div class="item-sub">De $5.000 a $10.000 desde junio</div></div>
-    </div>
-    <div class="item">
-      <div class="item-icon" style="background:#FAEEDA;color:#854F0B"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
-      <div><div class="item-label">Paseo de fin de año</div><div class="item-sub">Entre Campos · programa y presupuesto</div></div>
-    </div>
-    <div class="item">
-      <div class="item-icon" style="background:#EEEDFE;color:#534AB7"><i class="ti ti-calendar" aria-hidden="true"></i></div>
-      <div><div class="item-label">Fechas importantes</div><div class="item-sub">Segundo semestre</div></div>
-    </div>
-    <div class="item">
-      <div class="item-icon" style="background:#F1EFE8;color:#5F5E5A"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
-      <div><div class="item-label">Preguntas y acuerdos</div></div>
-    </div>
+  <div class="tag">Hoy veremos</div>
+  <div class="title">Agenda de la reunión</div>
+  <div class="items">
+    <div class="item"><div class="ico" style="background:#E6F1FB;color:#185FA5">&#128176;</div><div class="item-body"><div class="item-main">Estado de recaudación y gastos</div><div class="item-hint">Resumen de cuotas y gastos mar–may</div></div></div>
+    <div class="item"><div class="ico" style="background:#EAF3DE;color:#3B6D11">&#128200;</div><div class="item-body"><div class="item-main">Propuesta: ajuste de cuota</div><div class="item-hint">De $5.000 a $10.000 desde junio</div></div></div>
+    <div class="item"><div class="ico" style="background:#FAEEDA;color:#854F0B">&#128205;</div><div class="item-body"><div class="item-main">Paseo de fin de año</div><div class="item-hint">Entre Campos · programa y presupuesto</div></div></div>
+    <div class="item"><div class="ico" style="background:#EEEDFE;color:#534AB7">&#128197;</div><div class="item-body"><div class="item-main">Fechas importantes</div><div class="item-hint">Segundo semestre</div></div></div>
+    <div class="item"><div class="ico" style="background:#f0f0ee;color:#666">&#128172;</div><div class="item-body"><div class="item-main">Preguntas y acuerdos</div></div></div>
   </div>
-  <div class="slide-num">2</div>
+  <div class="num">2</div>
 </div>
 
-<!-- SLIDE 3: FINANZAS RESUMEN -->
+<!-- S3 FINANZAS -->
 <div class="slide" id="s2">
-  <div class="slide-tag">Finanzas</div>
-  <div class="slide-title">Estado de recaudación</div>
-  <div class="slide-sub">Cuota actual: $5.000/mes · Marzo a mayo 2026</div>
+  <div class="tag">Finanzas</div>
+  <div class="title">Estado de recaudación</div>
+  <div class="sub">Cuota actual: $5.000/mes · Marzo a mayo 2026</div>
   <div class="stat-row">
     <div class="stat"><div class="stat-label">Saldo en cuenta</div><div class="stat-val green">$415.506</div></div>
     <div class="stat"><div class="stat-label">Gastos realizados</div><div class="stat-val amber">$75.435</div></div>
     <div class="stat"><div class="stat-label">Familias con pagos</div><div class="stat-val">19 / 22</div></div>
   </div>
-  <div style="font-size:13px;font-weight:500;margin-bottom:.6rem;color:var(--color-text-secondary)">Gastos marzo–mayo detalle</div>
-  <div class="item-list">
-    <div class="item" style="padding:8px 14px">
-      <div class="item-label" style="font-size:13px">Diferencial alfombras sala</div>
-      <div class="item-right" style="font-size:13px;color:var(--color-text-secondary)">$10.375</div>
-    </div>
-    <div class="item" style="padding:8px 14px">
-      <div class="item-label" style="font-size:13px">Maicena actividad apoderados</div>
-      <div class="item-right" style="font-size:13px;color:var(--color-text-secondary)">$9.780</div>
-    </div>
-    <div class="item" style="padding:8px 14px">
-      <div class="item-label" style="font-size:13px">Regalos cumpleaños misses</div>
-      <div class="item-right" style="font-size:13px;color:var(--color-text-secondary)">$26.880</div>
-    </div>
-    <div class="item" style="padding:8px 14px">
-      <div class="item-label" style="font-size:13px">Material actividad "del mar"</div>
-      <div class="item-right" style="font-size:13px;color:var(--color-text-secondary)">$5.600</div>
-    </div>
-    <div class="item" style="padding:8px 14px">
-      <div class="item-label" style="font-size:13px">Material actividad apoderados</div>
-      <div class="item-right" style="font-size:13px;color:var(--color-text-secondary)">$22.800</div>
-    </div>
+  <div style="font-size:13px;font-weight:500;color:#666;margin-bottom:.6rem">Gastos marzo–mayo</div>
+  <div class="items">
+    <div class="item" style="padding:7px 14px"><div class="item-body">Diferencial alfombras sala</div><div class="item-right">$10.375</div></div>
+    <div class="item" style="padding:7px 14px"><div class="item-body">Maicena actividad apoderados</div><div class="item-right">$9.780</div></div>
+    <div class="item" style="padding:7px 14px"><div class="item-body">Regalos cumpleaños misses</div><div class="item-right">$26.880</div></div>
+    <div class="item" style="padding:7px 14px"><div class="item-body">Material actividad "del mar"</div><div class="item-right">$5.600</div></div>
+    <div class="item" style="padding:7px 14px"><div class="item-body">Material actividad apoderados</div><div class="item-right">$22.800</div></div>
   </div>
-  <div class="slide-num">3</div>
+  <div class="num">3</div>
 </div>
 
-<!-- SLIDE 4: PROPUESTA CUOTA -->
+<!-- S4 CUOTA -->
 <div class="slide" id="s3">
-  <div class="slide-tag">Para decidir hoy</div>
-  <div class="slide-title">Propuesta de ajuste de cuota</div>
-  <div class="slide-sub">El presupuesto del paseo y actividades de fin de año supera lo proyectado con cuota actual.</div>
-  <div class="two-col">
-    <div class="col-card">
+  <div class="tag">Para decidir hoy</div>
+  <div class="title">Propuesta de ajuste de cuota</div>
+  <div class="sub">El presupuesto del paseo y actividades de fin de año supera lo proyectado con la cuota actual.</div>
+  <div class="two">
+    <div class="col">
       <h3>Cuota actual ($5.000/mes)</h3>
-      <div style="font-size:28px;font-weight:500;color:#854F0B;margin-bottom:.5rem">$1.110.000</div>
-      <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:.75rem">Total proyectado año completo</div>
-      <div class="prog-bar"><div class="prog-fill amber-fill" style="width:57%"></div></div>
-      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:5px">57% del presupuesto requerido</div>
-      <div style="margin-top:1rem;font-size:13px;color:var(--color-text-secondary)">No alcanza a cubrir el paseo ni actividades de fin de año.</div>
+      <div class="big-num amber">$1.110.000</div>
+      <div class="hint" style="margin-bottom:.5rem">Total proyectado año completo</div>
+      <div class="prog"><div class="prog-fill fill-amber" style="width:57%"></div></div>
+      <div class="hint">57% del presupuesto requerido</div>
+      <div class="note">No alcanza a cubrir el paseo ni actividades de fin de año.</div>
     </div>
-    <div class="col-card" style="border:1.5px solid #1D9E75">
-      <div class="pill p-green" style="margin-bottom:.5rem">Propuesta CAMPUR</div>
+    <div class="col accent">
+      <div class="pill">Propuesta CAMPUR</div>
       <h3>Cuota ajustada ($10.000 jun–dic)</h3>
-      <div style="font-size:28px;font-weight:500;color:#0F6E56;margin-bottom:.5rem">$1.870.000</div>
-      <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:.75rem">Total proyectado año completo</div>
-      <div class="prog-bar"><div class="prog-fill" style="width:96%"></div></div>
-      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:5px">Cubre paseo + actividades + margen</div>
-      <div style="margin-top:1rem;font-size:13px;color:var(--color-text-secondary)">+$5.000/mes por 7 meses. Todo lo recaudado se rinde a la comunidad.</div>
+      <div class="big-num green">$1.870.000</div>
+      <div class="hint" style="margin-bottom:.5rem">Total proyectado año completo</div>
+      <div class="prog"><div class="prog-fill fill-green" style="width:96%"></div></div>
+      <div class="hint">Cubre paseo + actividades + margen</div>
+      <div class="note">+$5.000/mes por 7 meses. Todo lo recaudado se rinde a la comunidad.</div>
     </div>
   </div>
-  <div class="vote-box">
-    <div class="vote-label">Encuesta previa (respondida en WhatsApp)</div>
-    <div class="vote-row">
-      <span style="font-size:13px;min-width:30px">Sí</span>
-      <div class="vote-bar-wrap"><div class="vote-bar v-yes" id="vbar-yes" style="width:0%"></div></div>
-      <span class="vote-count" id="vcount-yes">— votos</span>
-    </div>
-    <div class="vote-row">
-      <span style="font-size:13px;min-width:30px">No</span>
-      <div class="vote-bar-wrap"><div class="vote-bar v-no" id="vbar-no" style="width:0%"></div></div>
-      <span class="vote-count" id="vcount-no">— votos</span>
-    </div>
-    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:6px">* Actualiza estos datos según el resultado real de la encuesta.</div>
-  </div>
-  <div class="slide-num">4</div>
+  <div class="num">4</div>
 </div>
 
-<!-- SLIDE 5: PASEO -->
+<!-- S5 PASEO -->
 <div class="slide" id="s4">
-  <div class="slide-tag">Paseo de fin de año</div>
-  <div class="slide-title">Entre Campos · Jornada completa</div>
-  <div class="slide-sub">~70–75 personas · Fecha a confirmar (nov–dic 2026)</div>
-  <div class="two-col">
+  <div class="tag">Paseo de fin de año</div>
+  <div class="title">Entre Campos · Jornada completa</div>
+  <div class="sub">~70–75 personas · Fecha a confirmar (nov–dic 2026)</div>
+  <div class="two">
     <div>
-      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:.6rem">Programa del día</div>
-      <div class="item-list">
-        <div class="item" style="padding:8px 12px"><div class="item-icon" style="background:#E1F5EE;color:#0F6E56;width:28px;height:28px;font-size:14px"><i class="ti ti-paw" aria-hidden="true"></i></div><div class="item-label" style="font-size:13px">Visita guiada y animales</div></div>
-        <div class="item" style="padding:8px 12px"><div class="item-icon" style="background:#FAEEDA;color:#854F0B;width:28px;height:28px;font-size:14px"><i class="ti ti-horse" aria-hidden="true"></i></div><div class="item-label" style="font-size:13px">Cabalgata</div></div>
-        <div class="item" style="padding:8px 12px"><div class="item-icon" style="background:#EAF3DE;color:#3B6D11;width:28px;height:28px;font-size:14px"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div><div class="item-label" style="font-size:13px">Almuerzo tipo asado</div></div>
-        <div class="item" style="padding:8px 12px"><div class="item-icon" style="background:#EEEDFE;color:#534AB7;width:28px;height:28px;font-size:14px"><i class="ti ti-snowman" aria-hidden="true"></i></div><div class="item-label" style="font-size:13px">Visita Viejo Pascuero</div></div>
-        <div class="item" style="padding:8px 12px"><div class="item-icon" style="background:#E6F1FB;color:#185FA5;width:28px;height:28px;font-size:14px"><i class="ti ti-run" aria-hidden="true"></i></div><div class="item-label" style="font-size:13px">Juego libre interior/exterior</div></div>
+      <div style="font-size:13px;font-weight:500;color:#666;margin-bottom:.6rem">Programa del día</div>
+      <div class="items">
+        <div class="item" style="padding:8px 12px"><div class="ico" style="background:#E1F5EE;color:#0F6E56;width:28px;height:28px;font-size:14px">&#128004;</div><div class="item-main" style="font-size:13px">Visita guiada y animales</div></div>
+        <div class="item" style="padding:8px 12px"><div class="ico" style="background:#FAEEDA;color:#854F0B;width:28px;height:28px;font-size:14px">&#129412;</div><div class="item-main" style="font-size:13px">Cabalgata</div></div>
+        <div class="item" style="padding:8px 12px"><div class="ico" style="background:#EAF3DE;color:#3B6D11;width:28px;height:28px;font-size:14px">&#127859;</div><div class="item-main" style="font-size:13px">Almuerzo tipo asado</div></div>
+        <div class="item" style="padding:8px 12px"><div class="ico" style="background:#EEEDFE;color:#534AB7;width:28px;height:28px;font-size:14px">&#127877;</div><div class="item-main" style="font-size:13px">Visita Viejo Pascuero</div></div>
+        <div class="item" style="padding:8px 12px"><div class="ico" style="background:#E6F1FB;color:#185FA5;width:28px;height:28px;font-size:14px">&#127939;</div><div class="item-main" style="font-size:13px">Juego libre interior/exterior</div></div>
       </div>
     </div>
     <div>
-      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:.6rem">Presupuesto proyectado</div>
-      <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-lg,12px);padding:1rem">
-        <table style="width:100%;font-size:13px;border-collapse:collapse">
-          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Arriendo local (sin IVA)</td><td style="text-align:right;font-weight:500">$650.000</td></tr>
-          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Regalos niños/as</td><td style="text-align:right;font-weight:500">$440.000</td></tr>
-          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Regalo misses</td><td style="text-align:right;font-weight:500">$75.000</td></tr>
-          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Viejo Pascuero</td><td style="text-align:right;font-weight:500">$50.000</td></tr>
-          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Cabalgata</td><td style="text-align:right;font-weight:500">$50.000</td></tr>
-          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Disfraz Luly Pampim</td><td style="text-align:right;font-weight:500">$50.000</td></tr>
-          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Día del niño</td><td style="text-align:right;font-weight:500">$22.000</td></tr>
-          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Entry point + aseo</td><td style="text-align:right;font-weight:500">$70.000</td></tr>
-          <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Comida</td><td style="text-align:right;color:var(--color-text-tertiary)">por cotizar</td></tr>
-          <tr style="border-top:0.5px solid var(--color-border-secondary,rgba(0,0,0,.2))">
-            <td style="padding:8px 0 4px;font-weight:500">Total confirmado</td>
-            <td style="text-align:right;font-weight:500;padding:8px 0 4px">$1.407.000</td>
-          </tr>
-          <tr><td style="padding:4px 0;color:#0F6E56;font-size:12px">Restante para comida</td><td style="text-align:right;color:#0F6E56;font-weight:500;font-size:12px">~$463.000</td></tr>
+      <div style="font-size:13px;font-weight:500;color:#666;margin-bottom:.6rem">Presupuesto proyectado</div>
+      <div style="background:#f0f0ee;border-radius:12px;padding:1rem">
+        <table class="gtable">
+          <tr><td>Arriendo local (sin IVA)</td><td>$650.000</td></tr>
+          <tr><td>Regalos niños/as</td><td>$440.000</td></tr>
+          <tr><td>Regalo misses</td><td>$75.000</td></tr>
+          <tr><td>Viejo Pascuero</td><td>$50.000</td></tr>
+          <tr><td>Cabalgata</td><td>$50.000</td></tr>
+          <tr><td>Disfraz Luly Pampim</td><td>$50.000</td></tr>
+          <tr><td>Día del niño</td><td>$22.000</td></tr>
+          <tr><td>Entry point + aseo</td><td>$70.000</td></tr>
+          <tr><td>Comida</td><td style="color:#999;font-weight:400">por cotizar</td></tr>
+          <tr class="total"><td>Total confirmado</td><td>$1.407.000</td></tr>
+          <tr class="resto"><td>Restante para comida</td><td>~$463.000</td></tr>
         </table>
       </div>
     </div>
   </div>
-  <div class="slide-num">5</div>
+  <div class="num">5</div>
 </div>
 
-<!-- SLIDE 6: FECHAS -->
+<!-- S6 FECHAS -->
 <div class="slide" id="s5">
-  <div class="slide-tag">Calendario</div>
-  <div class="slide-title">Fechas importantes</div>
-  <div class="slide-sub">Segundo semestre y próximas semanas</div>
-  <div class="timeline">
-    <div class="tl-item"><div class="tl-dot tl-now"></div><div class="tl-body"><div class="tl-date">4 jun 2026</div><div class="tl-desc">Green Day N°2 – Día del Medio Ambiente <span class="pill p-blue" style="font-size:10px">Mañana</span></div></div></div>
-    <div class="tl-line" style="margin-left:4px"></div>
-    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">6 jun 2026</div><div class="tl-desc">Bingo 8° Básico Bilingüe (sábado)</div></div></div>
-    <div class="tl-line" style="margin-left:4px"></div>
-    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">26 jun 2026</div><div class="tl-desc">Término de talleres y academias</div></div></div>
-    <div class="tl-line" style="margin-left:4px"></div>
-    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">29 jun 2026</div><div class="tl-desc">Feriado · colegio cerrado</div></div></div>
-    <div class="tl-line" style="margin-left:4px"></div>
-    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">30 jun – 2 jul 2026</div><div class="tl-desc">Jornada reducida · 1°–4°: 12:25 · 5°–IV°: 13:10</div></div></div>
-    <div class="tl-line" style="margin-left:4px"></div>
-    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">2 jul 2026</div><div class="tl-desc">Último día de clases 1° semestre</div></div></div>
-    <div class="tl-line" style="margin-left:4px"></div>
-    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">3 – 17 jul 2026</div><div class="tl-desc">Vacaciones de invierno</div></div></div>
-    <div class="tl-line" style="margin-left:4px"></div>
-    <div class="tl-item"><div class="tl-dot tl-future"></div><div class="tl-body"><div class="tl-date">Nov–Dic 2026</div><div class="tl-desc">Paseo de curso · fecha a votar hoy <span class="pill p-amber" style="font-size:10px">Por confirmar</span></div></div></div>
+  <div class="tag">Calendario</div>
+  <div class="title">Fechas importantes</div>
+  <div class="sub">Próximas semanas y segundo semestre</div>
+  <div class="tl">
+    <div class="tl-item"><div class="tl-dot d-now"></div><div class="tl-body"><div class="tl-date">4 jun 2026</div><div class="tl-desc">Green Day N°2 – Día del Medio Ambiente <span class="badge-sm badge-blue">Mañana</span></div></div></div>
+    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">6 jun 2026</div><div class="tl-desc">Bingo 8° Básico Bilingüe (sábado)</div></div></div>
+    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">26 jun 2026</div><div class="tl-desc">Término de talleres y academias</div></div></div>
+    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">29 jun 2026</div><div class="tl-desc">Feriado · colegio cerrado</div></div></div>
+    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">30 jun – 2 jul</div><div class="tl-desc">Jornada reducida · 1°–4°: 12:25 · 5°–IV°: 13:10</div></div></div>
+    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">2 jul 2026</div><div class="tl-desc">Último día de clases 1° semestre</div></div></div>
+    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">3 – 17 jul 2026</div><div class="tl-desc">Vacaciones de invierno</div></div></div>
+    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">Nov–Dic 2026</div><div class="tl-desc">Paseo de curso Entre Campos <span class="badge-sm">Fecha a confirmar</span></div></div></div>
   </div>
-  <div class="slide-num">6</div>
+  <div class="num">6</div>
 </div>
 
-<!-- SLIDE 7: CIERRE -->
+<!-- S7 CIERRE -->
 <div class="slide" id="s6">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
-    <div style="width:56px;height:56px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem">
-      <i class="ti ti-heart" aria-hidden="true" style="font-size:26px;color:#0F6E56"></i>
-    </div>
-    <div class="slide-title" style="font-size:28px;margin-bottom:.75rem">Gracias por su presencia</div>
-    <div class="slide-sub" style="max-width:420px;margin:0 auto 1.5rem">Todo lo que hemos hecho este año es por el bienestar y la alegría de nuestros niños y niñas.</div>
+    <div class="heart-circle">&#10084;&#65039;</div>
+    <div class="title" style="font-size:28px;margin-bottom:.75rem">Gracias por su presencia</div>
+    <div class="sub" style="max-width:420px;margin:0 auto 1.5rem">Todo lo que hemos hecho este año es por el bienestar y la alegría de nuestros niños y niñas.</div>
     <div class="divider" style="width:200px;margin:0 auto 1.5rem"></div>
-    <div style="display:flex;gap:1.5rem;justify-content:center">
-      <div style="text-align:center"><div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px">Cuenta Tenpo</div><div style="font-weight:500;font-size:13px">111117632311</div></div>
-      <div style="text-align:center"><div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px">Cuota desde junio</div><div style="font-weight:500;font-size:13px">$10.000/mes</div></div>
+    <div class="tenpo-row">
+      <div class="tenpo-item"><div class="tenpo-label">Cuenta Tenpo</div><div class="tenpo-val">111117632311</div></div>
+      <div class="tenpo-item"><div class="tenpo-label">Cuota desde junio</div><div class="tenpo-val">$10.000/mes</div></div>
     </div>
   </div>
-  <div class="slide-num">7</div>
+  <div class="num">7</div>
 </div>
 
 <div class="dots" id="dots"></div>
@@ -289,7 +255,7 @@ body{font-family:var(--font-sans,system-ui,sans-serif);background:var(--color-ba
 <script>
 const N=7;let cur=0;
 const dots=document.getElementById('dots');
-for(let i=0;i<N;i++){const b=document.createElement('button');b.className='dot'+(i===0?' active':'');b.setAttribute('aria-label','Slide '+(i+1));b.onclick=()=>go(i);dots.appendChild(b);}
+for(let i=0;i<N;i++){const b=document.createElement('button');b.className='dot'+(i===0?' active':'');b.setAttribute('aria-label','Slide '+(i+1));b.onclick=(()=>{const n=i;return()=>go(n);})();dots.appendChild(b);}
 function go(n){
   document.getElementById('s'+cur).classList.remove('active');
   document.querySelectorAll('.dot')[cur].classList.remove('active');
@@ -299,17 +265,9 @@ function go(n){
   document.getElementById('counter').textContent=(cur+1)+' / '+N;
   document.getElementById('btn-prev').disabled=cur===0;
   document.getElementById('btn-next').disabled=cur===N-1;
-  if(cur===3)setTimeout(animVote,300);
 }
 function move(d){go(Math.max(0,Math.min(N-1,cur+d)));}
-function animVote(){
-  const yes=0,no=0,total=yes+no;
-  if(total===0)return;
-  const yp=Math.round(yes/total*100),np=Math.round(no/total*100);
-  document.getElementById('vbar-yes').style.width=yp+'%';
-  document.getElementById('vbar-no').style.width=np+'%';
-  document.getElementById('vcount-yes').textContent=yes+' votos';
-  document.getElementById('vcount-no').textContent=no+' votos';
-}
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')move(1);if(e.key==='ArrowLeft')move(-1);});
 </script>
+</body>
+</html>
