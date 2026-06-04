@@ -3,271 +3,557 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>2ª Reunión Apoderados · Playgroup PG 2026</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<title>Playgroup PG 2026 · Pumahue</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#f5f5f3;color:#1a1a18;min-height:100vh}
-.deck{max-width:820px;margin:0 auto;padding:1rem}
-.nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
-.nav-btn{font-size:13px;padding:6px 16px;border-radius:8px;border:0.5px solid rgba(0,0,0,.25);background:#fff;cursor:pointer;color:#1a1a18;display:flex;align-items:center;gap:5px;transition:all .15s}
-.nav-btn:hover{background:#f0f0ee}
-.nav-btn:disabled{opacity:.35;cursor:default}
-.counter{font-size:13px;color:#666}
-.slide{background:#fff;border-radius:12px;border:0.5px solid rgba(0,0,0,.12);padding:2.5rem;min-height:460px;display:none;flex-direction:column;position:relative}
-.slide.active{display:flex}
-.tag{font-size:11px;font-weight:500;color:#666;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.6rem}
-.title{font-size:26px;font-weight:500;line-height:1.25;margin-bottom:.4rem}
-.sub{font-size:15px;color:#666;margin-bottom:1.25rem;line-height:1.5}
-.num{position:absolute;bottom:1.25rem;right:1.5rem;font-size:12px;color:#999}
-.dots{display:flex;gap:6px;justify-content:center;margin-top:.75rem}
-.dot{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.2);cursor:pointer;border:none;padding:0;transition:all .15s}
-.dot.active{background:#185FA5;width:20px;border-radius:4px}
-.divider{height:0.5px;background:rgba(0,0,0,.12);margin:1rem 0}
 
-/* stats */
-.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
-.stat{background:#f0f0ee;border-radius:8px;padding:.9rem 1rem}
-.stat-label{font-size:12px;color:#666;margin-bottom:4px}
-.stat-val{font-size:22px;font-weight:500}
-.green{color:#0F6E56}.amber{color:#854F0B}
+/* NAV */
+.nav{display:flex;gap:4px;padding:.85rem 1.25rem;border-bottom:0.5px solid rgba(0,0,0,.1);background:#fff;position:sticky;top:0;z-index:10;flex-wrap:wrap;align-items:center}
+.nav-title{font-size:15px;font-weight:500;margin-right:auto}
+.tab{font-size:13px;padding:5px 13px;border-radius:20px;border:0.5px solid transparent;background:transparent;cursor:pointer;color:#666;transition:all .15s}
+.tab.active{background:#fff;border-color:rgba(0,0,0,.25);color:#1a1a18;font-weight:500}
+.tab:hover:not(.active){background:#f0f0ee}
+.editor-btn{font-size:11px;padding:4px 10px;border-radius:20px;border:0.5px solid rgba(0,0,0,.2);background:transparent;cursor:pointer;color:#999;margin-left:4px;transition:all .15s}
+.editor-btn.on{background:#185FA5;color:#fff;border-color:#185FA5}
 
-/* items */
-.items{display:flex;flex-direction:column;gap:8px;flex:1}
-.item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;border:0.5px solid rgba(0,0,0,.12);font-size:14px}
-.ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
-.item-right{margin-left:auto;font-weight:500;font-size:13px;color:#666;white-space:nowrap}
-.item-body{flex:1}
-.item-main{font-size:14px}
-.item-hint{font-size:12px;color:#666;margin-top:1px}
+/* PAGES */
+.page{display:none;padding:1.25rem;max-width:780px;margin:0 auto}
+.page.active{display:block}
 
-/* two col */
-.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem;flex:1}
-.col{background:#f0f0ee;border-radius:12px;padding:1.25rem}
-.col h3{font-size:13px;font-weight:500;color:#666;margin-bottom:.75rem}
-.col.accent{border:1.5px solid #1D9E75}
-.pill{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;margin-bottom:6px;background:#C0DD97;color:#27500A}
-.big-num{font-size:28px;font-weight:500;margin-bottom:.4rem}
-.prog{height:10px;border-radius:5px;background:rgba(0,0,0,.1);margin-top:6px;overflow:hidden}
-.prog-fill{height:100%;border-radius:5px}
-.fill-green{background:#1D9E75}
-.fill-amber{background:#EF9F27}
-.hint{font-size:12px;color:#666;margin-top:5px}
-.note{font-size:13px;color:#666;margin-top:.75rem}
+/* SECTION HEADER */
+.section-head{margin-bottom:1.25rem}
+.section-head h2{font-size:20px;font-weight:500}
+.section-head p{font-size:14px;color:#666;margin-top:3px}
 
-/* team */
-.team{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:.5rem}
-.member .role{font-size:12px;color:#666;margin-bottom:3px}
-.member .role span{color:#999;font-size:11px}
-.member .name{font-weight:500;font-size:14px}
+/* CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.25rem}
+.chip{font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid rgba(0,0,0,.22);background:#fff;cursor:pointer;color:#555;transition:all .15s}
+.chip.active{background:#185FA5;color:#fff;border-color:#185FA5}
 
-/* gastos table */
-.gtable{width:100%;font-size:13px;border-collapse:collapse}
-.gtable td{padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,.08)}
-.gtable td:last-child{text-align:right;font-weight:500}
-.gtable tr.total td{font-weight:500;border-top:0.5px solid rgba(0,0,0,.2);border-bottom:none;padding-top:8px}
-.gtable tr.resto td{color:#0F6E56;font-size:12px;border-bottom:none}
+/* EVENTS */
+.month-label{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.07em;margin:1.25rem 0 .55rem;padding-bottom:5px;border-bottom:0.5px solid rgba(0,0,0,.1)}
+.erow{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:#fff;border-radius:10px;border:0.5px solid rgba(0,0,0,.1);margin-bottom:7px;transition:border-color .15s}
+.erow.editable{cursor:pointer}
+.erow.editable:hover{border-color:rgba(0,0,0,.25)}
+.erow.past{opacity:.45}
+.dcol{min-width:38px;text-align:center;flex-shrink:0}
+.dday{font-size:19px;font-weight:500;line-height:1}
+.ddow{font-size:11px;color:#aaa;margin-top:1px}
+.vline{width:0.5px;background:rgba(0,0,0,.1);align-self:stretch;min-height:28px}
+.ebody{flex:1}
+.etitle{font-size:14px;font-weight:500;line-height:1.3}
+.edesc{font-size:12px;color:#666;margin-top:3px;line-height:1.4}
+.ebadges{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
+.badge{font-size:11px;padding:2px 9px;border-radius:20px;font-weight:500}
+.b-sc{background:#F7C1C1;color:#791F1F}
+.b-sa{background:#FAC775;color:#633806}
+.b-ec{background:#C0DD97;color:#3B6D11}
+.b-ac{background:#CECBF6;color:#3C3489}
+.b-fp{background:#B5D4F4;color:#0C447C}
+.b-rc{background:#F4C0D1;color:#72243E}
+.b-cu{background:#9FE1CB;color:#085041}
+.sdot{width:8px;height:8px;border-radius:50%;margin-top:6px;flex-shrink:0}
+.s-p{background:#C4C2BA}.s-s{background:#EF9F27}.s-u{background:#1D9E75}
 
-/* timeline */
-.tl{display:flex;flex-direction:column;gap:0;flex:1}
-.tl-item{display:flex;gap:12px;align-items:flex-start;padding:6px 0}
-.tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
-.d-now{background:#EF9F27}.d-fut{background:#1D9E75}
-.tl-body{flex:1;border-bottom:0.5px solid rgba(0,0,0,.07);padding-bottom:6px}
-.tl-date{font-size:12px;color:#666;margin-bottom:1px}
-.tl-desc{font-size:14px}
-.badge-sm{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;margin-left:6px;background:#FAC775;color:#633806;vertical-align:middle}
-.badge-blue{background:#B5D4F4;color:#0C447C}
+/* SEMANA */
+.week-nav{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
+.week-label{font-size:14px;font-weight:500;flex:1;text-align:center}
+.wbtn{padding:5px 12px;border-radius:8px;border:0.5px solid rgba(0,0,0,.22);background:#fff;cursor:pointer;font-size:13px;color:#1a1a18}
+.wbtn:hover{background:#f0f0ee}
+.day-card{background:#fff;border-radius:10px;border:0.5px solid rgba(0,0,0,.1);margin-bottom:8px;overflow:hidden}
+.day-header{padding:8px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid rgba(0,0,0,.08)}
+.day-name{font-size:13px;font-weight:600}
+.day-date{font-size:12px;color:#888}
+.day-items{padding:6px 0}
+.day-item{display:flex;align-items:flex-start;gap:10px;padding:7px 14px}
+.day-item+.day-item{border-top:0.5px solid rgba(0,0,0,.06)}
+.jornada-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.jn{background:#185FA5}.je{background:#1D9E75}.ja{background:#EF9F27}
+.day-item-text{flex:1;font-size:13px;line-height:1.4}
+.day-item-tag{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500;white-space:nowrap;flex-shrink:0}
+.tag-jn{background:#DBEAFE;color:#1E40AF}
+.tag-je{background:#D1FAE5;color:#065F46}
+.tag-ja{background:#FEF3C7;color:#92400E}
+.empty-day{padding:10px 14px;font-size:12px;color:#aaa;font-style:italic}
+.week-legend{display:flex;gap:12px;margin-bottom:1rem;font-size:12px;color:#666;flex-wrap:wrap}
+.leg{display:flex;align-items:center;gap:5px}
 
-/* cover badge */
-.cover-badge{display:inline-flex;align-items:center;gap:6px;background:#E6F1FB;color:#0C447C;border-radius:20px;padding:5px 14px;font-size:13px;font-weight:500;margin-bottom:1.5rem}
+/* PASEO */
+.paseo-hero{background:#fff;border-radius:12px;border:0.5px solid rgba(0,0,0,.1);padding:1.25rem;margin-bottom:1rem}
+.paseo-hero h3{font-size:18px;font-weight:500;margin-bottom:4px}
+.paseo-hero p{font-size:13px;color:#666;margin-bottom:1rem}
+.prog-list{display:flex;flex-direction:column;gap:7px}
+.prog-item{display:flex;align-items:center;gap:10px;font-size:13px}
+.prog-ico{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
 
-/* cierre */
-.heart-circle{width:56px;height:56px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:28px}
-.tenpo-row{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
-.tenpo-item{text-align:center}
-.tenpo-label{font-size:12px;color:#666;margin-bottom:4px}
-.tenpo-val{font-weight:500;font-size:13px}
+/* EDITOR UI */
+.editor-bar{background:#EFF6FF;border:0.5px solid #BFDBFE;border-radius:10px;padding:10px 14px;margin-bottom:1rem;display:flex;align-items:center;gap:8px;font-size:13px;color:#1E40AF}
+.action-bar{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap}
+.btn{font-size:13px;padding:6px 14px;border-radius:8px;border:0.5px solid rgba(0,0,0,.22);background:#fff;cursor:pointer;color:#1a1a18;display:flex;align-items:center;gap:5px;transition:all .15s}
+.btn:hover{background:#f0f0ee}
+.btn.primary{background:#185FA5;color:#fff;border-color:#185FA5}
+.btn.primary:hover{background:#0f4a8a}
+.btn.danger{color:#A32D2D;border-color:#F09595}
+
+/* PARSER */
+.parser-box{background:#fff;border-radius:12px;border:0.5px solid rgba(0,0,0,.1);padding:1.25rem;margin-bottom:1.25rem}
+.parser-box h4{font-size:14px;font-weight:500;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.parser-box p{font-size:12px;color:#666;margin-bottom:.75rem}
+.parse-ta{width:100%;font-size:13px;padding:10px;border-radius:8px;border:0.5px solid rgba(0,0,0,.22);background:#f5f5f3;color:#1a1a18;resize:vertical;min-height:100px;font-family:inherit}
+.parse-ta:focus{outline:none;border-color:#185FA5;background:#fff}
+.parsed-results{margin-top:.75rem;display:flex;flex-direction:column;gap:7px}
+.parsed-item{border:0.5px solid rgba(0,0,0,.18);border-radius:10px;padding:10px 14px;background:#fff;display:flex;align-items:flex-start;gap:10px}
+.parsed-item.sel{border-color:#185FA5;background:#f0f6ff}
+.pcheck{width:18px;height:18px;border-radius:5px;border:0.5px solid rgba(0,0,0,.22);cursor:pointer;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.pcheck.on{background:#185FA5;border-color:#185FA5;color:#fff}
+.pbody{flex:1}
+.pdate{font-size:11px;color:#888;margin-bottom:2px}
+.ptitle{font-size:14px;font-weight:500}
+.pdesc{font-size:12px;color:#666;margin-top:2px}
+.spinner{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* MODAL */
+.mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:100;align-items:center;justify-content:center}
+.mbg.open{display:flex}
+.modal{background:#fff;border-radius:12px;padding:1.25rem;width:min(500px,95vw);max-height:90vh;overflow-y:auto;border:0.5px solid rgba(0,0,0,.1)}
+.modal h3{font-size:16px;font-weight:500;margin-bottom:1rem}
+.field{margin-bottom:.75rem}
+.field label{font-size:12px;color:#666;display:block;margin-bottom:4px}
+.field input,.field textarea{width:100%;font-size:14px;padding:7px 10px;border-radius:8px;border:0.5px solid rgba(0,0,0,.22);background:#fff;color:#1a1a18;font-family:inherit}
+.field textarea{resize:vertical;min-height:70px}
+.tag-grid{display:flex;flex-wrap:wrap;gap:6px}
+.tag-opt{font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid rgba(0,0,0,.18);cursor:pointer;transition:all .15s}
+.tag-opt.sel{font-weight:600;box-shadow:0 0 0 1.5px currentColor}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:1rem}
+
+/* PIN */
+.pin-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center}
+.pin-bg.open{display:flex}
+.pin-box{background:#fff;border-radius:12px;padding:1.5rem;width:280px;text-align:center}
+.pin-box h3{font-size:16px;font-weight:500;margin-bottom:.5rem}
+.pin-box p{font-size:13px;color:#666;margin-bottom:1rem}
+.pin-input{width:100%;font-size:22px;letter-spacing:.3em;text-align:center;padding:10px;border-radius:8px;border:0.5px solid rgba(0,0,0,.22);font-family:inherit;margin-bottom:.75rem}
+.pin-err{font-size:12px;color:#A32D2D;margin-bottom:.5rem;min-height:16px}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#1a1a18;color:#fff;padding:8px 18px;border-radius:20px;font-size:13px;z-index:999;pointer-events:none;transition:opacity .2s}
 </style>
 </head>
 <body>
-<div class="deck">
+
 <div class="nav">
-  <button class="nav-btn" id="btn-prev" onclick="move(-1)" disabled>&#8592; Anterior</button>
-  <span class="counter" id="counter">1 / 7</span>
-  <button class="nav-btn" id="btn-next" onclick="move(1)">Siguiente &#8594;</button>
+  <div class="nav-title">&#127979; Playgroup PG 2026</div>
+  <button class="tab active" onclick="showPage('cal',this)">Calendario</button>
+  <button class="tab" onclick="showPage('semana',this)">Esta semana</button>
+  <button class="tab" onclick="showPage('paseo',this)">Paseo</button>
+  <button class="editor-btn" id="editor-btn" onclick="handleEditorBtn()" title="Modo editor">&#9998;</button>
 </div>
 
-<!-- S1 PORTADA -->
-<div class="slide active" id="s0">
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-    <div class="cover-badge">&#127979; Playgroup PG 2026 · Pumahue Puerto Montt</div>
-    <div class="title" style="font-size:32px">2ª Reunión de Apoderados</div>
-    <div class="sub" style="margin-top:.75rem">Junio 2026 · CAMPUR Playgroup</div>
-    <div class="divider"></div>
-    <div class="team">
-      <div class="member"><div class="role">Coordinación <span>· Presidenta</span></div><div class="name">Mandy</div></div>
-      <div class="member"><div class="role">Aprovechamiento <span>· Tesorera</span></div><div class="name">Digna</div></div>
-      <div class="member"><div class="role">Madurez <span>· Secretario</span></div><div class="name">Paulo</div></div>
-      <div class="member"><div class="role">Relaciones <span>· RR.PP.</span></div><div class="name">Héctor</div></div>
-      <div class="member"><div class="role">Unidad <span>· Vocal</span></div><div class="name">Liset</div></div>
-      <div class="member"><div class="role">Pastoral <span>· Vocal</span></div><div class="name">Samuel</div></div>
-    </div>
+<!-- CALENDARIO -->
+<div id="page-cal" class="page active">
+  <div class="section-head">
+    <h2>Calendario del curso</h2>
+    <p>Fechas importantes del semestre</p>
   </div>
-  <div class="num">1</div>
-</div>
-
-<!-- S2 AGENDA -->
-<div class="slide" id="s1">
-  <div class="tag">Hoy veremos</div>
-  <div class="title">Agenda de la reunión</div>
-  <div class="items">
-    <div class="item"><div class="ico" style="background:#E6F1FB;color:#185FA5">&#128176;</div><div class="item-body"><div class="item-main">Estado de recaudación y gastos</div><div class="item-hint">Resumen de cuotas y gastos mar–may</div></div></div>
-    <div class="item"><div class="ico" style="background:#EAF3DE;color:#3B6D11">&#128200;</div><div class="item-body"><div class="item-main">Propuesta: ajuste de cuota</div><div class="item-hint">De $5.000 a $10.000 desde junio</div></div></div>
-    <div class="item"><div class="ico" style="background:#FAEEDA;color:#854F0B">&#128205;</div><div class="item-body"><div class="item-main">Paseo de fin de año</div><div class="item-hint">Entre Campos · programa y presupuesto</div></div></div>
-    <div class="item"><div class="ico" style="background:#EEEDFE;color:#534AB7">&#128197;</div><div class="item-body"><div class="item-main">Fechas importantes</div><div class="item-hint">Segundo semestre</div></div></div>
-    <div class="item"><div class="ico" style="background:#f0f0ee;color:#666">&#128172;</div><div class="item-body"><div class="item-main">Preguntas y acuerdos</div></div></div>
-  </div>
-  <div class="num">2</div>
-</div>
-
-<!-- S3 FINANZAS -->
-<div class="slide" id="s2">
-  <div class="tag">Finanzas</div>
-  <div class="title">Estado de recaudación</div>
-  <div class="sub">Cuota actual: $5.000/mes · Marzo a mayo 2026</div>
-  <div class="stat-row">
-    <div class="stat"><div class="stat-label">Saldo en cuenta</div><div class="stat-val green">$415.506</div></div>
-    <div class="stat"><div class="stat-label">Gastos realizados</div><div class="stat-val amber">$75.435</div></div>
-    <div class="stat"><div class="stat-label">Familias con pagos</div><div class="stat-val">19 / 22</div></div>
-  </div>
-  <div style="font-size:13px;font-weight:500;color:#666;margin-bottom:.6rem">Gastos marzo–mayo</div>
-  <div class="items">
-    <div class="item" style="padding:7px 14px"><div class="item-body">Diferencial alfombras sala</div><div class="item-right">$10.375</div></div>
-    <div class="item" style="padding:7px 14px"><div class="item-body">Maicena actividad apoderados</div><div class="item-right">$9.780</div></div>
-    <div class="item" style="padding:7px 14px"><div class="item-body">Regalos cumpleaños misses</div><div class="item-right">$26.880</div></div>
-    <div class="item" style="padding:7px 14px"><div class="item-body">Material actividad "del mar"</div><div class="item-right">$5.600</div></div>
-    <div class="item" style="padding:7px 14px"><div class="item-body">Material actividad apoderados</div><div class="item-right">$22.800</div></div>
-  </div>
-  <div class="num">3</div>
-</div>
-
-<!-- S4 CUOTA -->
-<div class="slide" id="s3">
-  <div class="tag">Para decidir hoy</div>
-  <div class="title">Propuesta de ajuste de cuota</div>
-  <div class="sub">El presupuesto del paseo y actividades de fin de año supera lo proyectado con la cuota actual.</div>
-  <div class="two">
-    <div class="col">
-      <h3>Cuota actual ($5.000/mes)</h3>
-      <div class="big-num amber">$1.110.000</div>
-      <div class="hint" style="margin-bottom:.5rem">Total proyectado año completo</div>
-      <div class="prog"><div class="prog-fill fill-amber" style="width:57%"></div></div>
-      <div class="hint">57% del presupuesto requerido</div>
-      <div class="note">No alcanza a cubrir el paseo ni actividades de fin de año.</div>
-    </div>
-    <div class="col accent">
-      <div class="pill">Propuesta CAMPUR</div>
-      <h3>Cuota ajustada ($10.000 jun–dic)</h3>
-      <div class="big-num green">$1.870.000</div>
-      <div class="hint" style="margin-bottom:.5rem">Total proyectado año completo</div>
-      <div class="prog"><div class="prog-fill fill-green" style="width:96%"></div></div>
-      <div class="hint">Cubre paseo + actividades + margen</div>
-      <div class="note">+$5.000/mes por 7 meses. Todo lo recaudado se rinde a la comunidad.</div>
-    </div>
-  </div>
-  <div class="num">4</div>
-</div>
-
-<!-- S5 PASEO -->
-<div class="slide" id="s4">
-  <div class="tag">Paseo de fin de año</div>
-  <div class="title">Entre Campos · Jornada completa</div>
-  <div class="sub">~70–75 personas · Fecha a confirmar (nov–dic 2026)</div>
-  <div class="two">
-    <div>
-      <div style="font-size:13px;font-weight:500;color:#666;margin-bottom:.6rem">Programa del día</div>
-      <div class="items">
-        <div class="item" style="padding:8px 12px"><div class="ico" style="background:#E1F5EE;color:#0F6E56;width:28px;height:28px;font-size:14px">&#128004;</div><div class="item-main" style="font-size:13px">Visita guiada y animales</div></div>
-        <div class="item" style="padding:8px 12px"><div class="ico" style="background:#FAEEDA;color:#854F0B;width:28px;height:28px;font-size:14px">&#129412;</div><div class="item-main" style="font-size:13px">Cabalgata</div></div>
-        <div class="item" style="padding:8px 12px"><div class="ico" style="background:#EAF3DE;color:#3B6D11;width:28px;height:28px;font-size:14px">&#127859;</div><div class="item-main" style="font-size:13px">Almuerzo tipo asado</div></div>
-        <div class="item" style="padding:8px 12px"><div class="ico" style="background:#EEEDFE;color:#534AB7;width:28px;height:28px;font-size:14px">&#127877;</div><div class="item-main" style="font-size:13px">Visita Viejo Pascuero</div></div>
-        <div class="item" style="padding:8px 12px"><div class="ico" style="background:#E6F1FB;color:#185FA5;width:28px;height:28px;font-size:14px">&#127939;</div><div class="item-main" style="font-size:13px">Juego libre interior/exterior</div></div>
+  <div id="editor-bar-cal" style="display:none" class="editor-bar"><i class="ti ti-pencil" aria-hidden="true"></i> Modo editor activo — solo visible para ti</div>
+  <div id="parser-section" style="display:none">
+    <div class="parser-box">
+      <h4><i class="ti ti-sparkles" aria-hidden="true" style="color:#185FA5"></i> Pegar texto para interpretar</h4>
+      <p>Pegá un correo, circular o WhatsApp. La IA detecta las fechas y las convierte en hitos listos para validar.</p>
+      <textarea class="parse-ta" id="parse-input" placeholder="Ej: Jueves 21 de mayo feriado. Viernes 22 interferiado, colegio cerrado..."></textarea>
+      <div style="display:flex;gap:8px;margin-top:.75rem;align-items:center;flex-wrap:wrap">
+        <button class="btn primary" id="btn-parse" onclick="parseText()"><i class="ti ti-sparkles" aria-hidden="true"></i> Interpretar con IA</button>
+        <button class="btn" onclick="clearParser()">Limpiar</button>
+        <span id="parse-status" style="font-size:12px;color:#666"></span>
       </div>
-    </div>
-    <div>
-      <div style="font-size:13px;font-weight:500;color:#666;margin-bottom:.6rem">Presupuesto proyectado</div>
-      <div style="background:#f0f0ee;border-radius:12px;padding:1rem">
-        <table class="gtable">
-          <tr><td>Arriendo local (sin IVA)</td><td>$650.000</td></tr>
-          <tr><td>Regalos niños/as</td><td>$440.000</td></tr>
-          <tr><td>Regalo misses</td><td>$75.000</td></tr>
-          <tr><td>Viejo Pascuero</td><td>$50.000</td></tr>
-          <tr><td>Cabalgata</td><td>$50.000</td></tr>
-          <tr><td>Disfraz Luly Pampim</td><td>$50.000</td></tr>
-          <tr><td>Día del niño</td><td>$22.000</td></tr>
-          <tr><td>Entry point + aseo</td><td>$70.000</td></tr>
-          <tr><td>Comida</td><td style="color:#999;font-weight:400">por cotizar</td></tr>
-          <tr class="total"><td>Total confirmado</td><td>$1.407.000</td></tr>
-          <tr class="resto"><td>Restante para comida</td><td>~$463.000</td></tr>
-        </table>
+      <div id="parsed-results" class="parsed-results"></div>
+      <div id="parse-actions" style="display:none;gap:8px;margin-top:.75rem;flex-wrap:wrap">
+        <button class="btn primary" onclick="addSelected()"><i class="ti ti-plus" aria-hidden="true"></i> Agregar seleccionados</button>
+        <button class="btn" onclick="selectAll()">Seleccionar todos</button>
       </div>
     </div>
   </div>
-  <div class="num">5</div>
-</div>
-
-<!-- S6 FECHAS -->
-<div class="slide" id="s5">
-  <div class="tag">Calendario</div>
-  <div class="title">Fechas importantes</div>
-  <div class="sub">Próximas semanas y segundo semestre</div>
-  <div class="tl">
-    <div class="tl-item"><div class="tl-dot d-now"></div><div class="tl-body"><div class="tl-date">4 jun 2026</div><div class="tl-desc">Green Day N°2 – Día del Medio Ambiente <span class="badge-sm badge-blue">Mañana</span></div></div></div>
-    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">6 jun 2026</div><div class="tl-desc">Bingo 8° Básico Bilingüe (sábado)</div></div></div>
-    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">26 jun 2026</div><div class="tl-desc">Término de talleres y academias</div></div></div>
-    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">29 jun 2026</div><div class="tl-desc">Feriado · colegio cerrado</div></div></div>
-    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">30 jun – 2 jul</div><div class="tl-desc">Jornada reducida · 1°–4°: 12:25 · 5°–IV°: 13:10</div></div></div>
-    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">2 jul 2026</div><div class="tl-desc">Último día de clases 1° semestre</div></div></div>
-    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">3 – 17 jul 2026</div><div class="tl-desc">Vacaciones de invierno</div></div></div>
-    <div class="tl-item"><div class="tl-dot d-fut"></div><div class="tl-body"><div class="tl-date">Nov–Dic 2026</div><div class="tl-desc">Paseo de curso Entre Campos <span class="badge-sm">Fecha a confirmar</span></div></div></div>
+  <div id="editor-action-bar" style="display:none" class="action-bar">
+    <button class="btn" onclick="openModal()"><i class="ti ti-plus" aria-hidden="true"></i> Agregar hito manual</button>
   </div>
-  <div class="num">6</div>
+  <div class="chips" id="chips">
+    <button class="chip active" data-f="all">Todos</button>
+    <button class="chip" data-f="sc">Sin clases</button>
+    <button class="chip" data-f="sa">Salida anticipada</button>
+    <button class="chip" data-f="ec">Evento colegio</button>
+    <button class="chip" data-f="fp">Fin de período</button>
+    <button class="chip" data-f="rc">Recordatorio</button>
+    <button class="chip" data-f="cu">Curso</button>
+  </div>
+  <div id="calendar"></div>
 </div>
 
-<!-- S7 CIERRE -->
-<div class="slide" id="s6">
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
-    <div class="heart-circle">&#10084;&#65039;</div>
-    <div class="title" style="font-size:28px;margin-bottom:.75rem">Gracias por su presencia</div>
-    <div class="sub" style="max-width:420px;margin:0 auto 1.5rem">Todo lo que hemos hecho este año es por el bienestar y la alegría de nuestros niños y niñas.</div>
-    <div class="divider" style="width:200px;margin:0 auto 1.5rem"></div>
-    <div class="tenpo-row">
-      <div class="tenpo-item"><div class="tenpo-label">Cuenta Tenpo</div><div class="tenpo-val">111117632311</div></div>
-      <div class="tenpo-item"><div class="tenpo-label">Cuota desde junio</div><div class="tenpo-val">$10.000/mes</div></div>
+<!-- ESTA SEMANA -->
+<div id="page-semana" class="page">
+  <div class="section-head">
+    <h2>¿Qué llevo esta semana?</h2>
+    <p>Recordatorio semanal del curso</p>
+  </div>
+  <div id="editor-bar-sem" style="display:none" class="editor-bar"><i class="ti ti-pencil" aria-hidden="true"></i> Modo editor activo</div>
+  <div id="sem-editor-section" style="display:none">
+    <div class="parser-box">
+      <h4><i class="ti ti-sparkles" aria-hidden="true" style="color:#185FA5"></i> Cargar semana desde texto</h4>
+      <p>Pegá el mensaje de las misses (correo o WhatsApp) y la IA organiza los ítems por día y jornada.</p>
+      <textarea class="parse-ta" id="sem-input" placeholder="Ej: Lunes taller de cocina llevar harina y huevos. Martes traer calcetín para el títere. Miércoles Green Day usar polera verde..."></textarea>
+      <div style="display:flex;gap:8px;margin-top:.75rem;align-items:center;flex-wrap:wrap">
+        <button class="btn primary" id="btn-sem-parse" onclick="parseSemana()"><i class="ti ti-sparkles" aria-hidden="true"></i> Interpretar con IA</button>
+        <button class="btn" onclick="clearSemParser()">Limpiar</button>
+        <span id="sem-status" style="font-size:12px;color:#666"></span>
+      </div>
+      <div id="sem-parsed" class="parsed-results"></div>
+      <div id="sem-actions" style="display:none;gap:8px;margin-top:.75rem">
+        <button class="btn primary" onclick="publishSemana()"><i class="ti ti-check" aria-hidden="true"></i> Publicar semana</button>
+      </div>
     </div>
   </div>
-  <div class="num">7</div>
+  <div class="week-legend">
+    <span class="leg"><span class="jornada-dot jn"></span>Jornada normal</span>
+    <span class="leg"><span class="jornada-dot je"></span>Jornada extendida</span>
+    <span class="leg"><span class="jornada-dot ja"></span>Ambas</span>
+  </div>
+  <div class="week-nav">
+    <button class="wbtn" onclick="changeWeek(-1)">&#8592;</button>
+    <div class="week-label" id="week-label"></div>
+    <button class="wbtn" onclick="changeWeek(1)">&#8594;</button>
+  </div>
+  <div id="week-content"></div>
 </div>
 
-<div class="dots" id="dots"></div>
+<!-- PASEO -->
+<div id="page-paseo" class="page">
+  <div class="section-head">
+    <h2>Paseo de fin de año</h2>
+    <p>Entre Campos · Jornada completa · Fecha por confirmar</p>
+  </div>
+  <div class="paseo-hero">
+    <h3>&#127968; Entre Campos</h3>
+    <p>Un día completo en el campo para los niños y las familias del curso.</p>
+    <div class="prog-list">
+      <div class="prog-item"><div class="prog-ico" style="background:#E1F5EE">&#128004;</div>Visita guiada y animales del campo</div>
+      <div class="prog-item"><div class="prog-ico" style="background:#FAEEDA">&#129412;</div>Cabalgata</div>
+      <div class="prog-item"><div class="prog-ico" style="background:#EAF3DE">&#127859;</div>Almuerzo tipo asado</div>
+      <div class="prog-item"><div class="prog-ico" style="background:#EEEDFE">&#127877;</div>Visita del Viejo Pascuero</div>
+      <div class="prog-item"><div class="prog-ico" style="background:#E6F1FB">&#127939;</div>Juego libre interior y exterior</div>
+    </div>
+  </div>
+  <div style="background:#FEF3C7;border-radius:10px;padding:10px 14px;font-size:13px;color:#92400E;display:flex;align-items:center;gap:8px">
+    <i class="ti ti-calendar" aria-hidden="true"></i>
+    <span>La fecha se confirmará próximamente. Será un sábado entre noviembre y diciembre 2026.</span>
+  </div>
+</div>
+
+<!-- MODAL HITO -->
+<div class="mbg" id="modal-bg">
+  <div class="modal">
+    <h3 id="modal-title">Agregar hito</h3>
+    <div class="field"><label>Fecha</label><input type="date" id="ev-date"></div>
+    <div class="field"><label>Título</label><input type="text" id="ev-title" placeholder="Ej: Reunión de apoderados"></div>
+    <div class="field"><label>Descripción (opcional)</label><textarea id="ev-desc" placeholder="Detalles adicionales..."></textarea></div>
+    <div class="field"><label>Etiquetas</label><div class="tag-grid" id="tag-grid"></div></div>
+    <div class="modal-actions">
+      <button class="btn danger" id="btn-delete" style="display:none;margin-right:auto" onclick="deleteEvent()"><i class="ti ti-trash"></i> Eliminar</button>
+      <button class="btn" onclick="closeModal()">Cancelar</button>
+      <button class="btn primary" onclick="saveEvent()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- PIN -->
+<div class="pin-bg" id="pin-bg">
+  <div class="pin-box">
+    <h3>Modo editor</h3>
+    <p>Ingresa tu PIN para activar la edición</p>
+    <input class="pin-input" type="password" id="pin-input" maxlength="4" inputmode="numeric" onkeydown="if(event.key==='Enter')checkPin()">
+    <div class="pin-err" id="pin-err"></div>
+    <button class="btn primary" style="width:100%;justify-content:center" onclick="checkPin()">Entrar</button>
+    <button class="btn" style="width:100%;justify-content:center;margin-top:6px" onclick="closePinModal()">Cancelar</button>
+  </div>
 </div>
 
 <script>
-const N=7;let cur=0;
-const dots=document.getElementById('dots');
-for(let i=0;i<N;i++){const b=document.createElement('button');b.className='dot'+(i===0?' active':'');b.setAttribute('aria-label','Slide '+(i+1));b.onclick=(()=>{const n=i;return()=>go(n);})();dots.appendChild(b);}
-function go(n){
-  document.getElementById('s'+cur).classList.remove('active');
-  document.querySelectorAll('.dot')[cur].classList.remove('active');
-  cur=n;
-  document.getElementById('s'+cur).classList.add('active');
-  document.querySelectorAll('.dot')[cur].classList.add('active');
-  document.getElementById('counter').textContent=(cur+1)+' / '+N;
-  document.getElementById('btn-prev').disabled=cur===0;
-  document.getElementById('btn-next').disabled=cur===N-1;
+const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DAYS=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const TODAY=new Date(2026,5,3);
+const PIN='9920';
+const TAG_DEF={sc:{label:'Sin clases',cls:'b-sc'},sa:{label:'Salida anticipada',cls:'b-sa'},ec:{label:'Evento colegio',cls:'b-ec'},fp:{label:'Fin de período',cls:'b-fp'},rc:{label:'Recordatorio',cls:'b-rc'},cu:{label:'Curso',cls:'b-cu'}};
+
+let isEditor=false;
+let activeFilter='all';
+let editingId=null;
+let parsedHitos=[];
+let parsedSem=[];
+let weekOffset=0;
+let semanaData={};
+let nextId=20;
+
+let events=[
+  {id:1,date:'2026-05-21',title:'Feriado nacional',desc:'Colegio cerrado.',tags:['sc']},
+  {id:2,date:'2026-05-22',title:'Interferiado',desc:'Colegio cerrado.',tags:['sc']},
+  {id:3,date:'2026-05-25',title:'Inicio uso buzo institucional',desc:'Autorizado por bajas temperaturas. Enviar ropa de recambio para Ed. Física y utensilios de aseo.',tags:['rc']},
+  {id:4,date:'2026-05-26',title:'Simulacro de evacuación',desc:'Participación obligatoria.',tags:['ec']},
+  {id:5,date:'2026-06-04',title:'Green Day N°2 – Día del Medio Ambiente',desc:'✓ Realizado hoy.',tags:['ec']},
+  {id:6,date:'2026-06-06',title:'Bingo 8° Básico Bilingüe',desc:'Sábado.',tags:['ec']},
+  {id:7,date:'2026-06-26',title:'Término de talleres y academias',desc:'Último día de actividades extraprogramáticas.',tags:['fp']},
+  {id:8,date:'2026-06-29',title:'Feriado',desc:'Colegio cerrado.',tags:['sc']},
+  {id:9,date:'2026-06-30',title:'Inicio reducción de jornada',desc:'1°–4° Básico: salida 12:25 · 5°–IV° Medio: salida 13:10 · Parvularia: horario normal.',tags:['sa']},
+  {id:10,date:'2026-07-02',title:'Último día de clases – fin de semestre',desc:'',tags:['sa','fp']},
+  {id:11,date:'2026-07-03',title:'Inicio vacaciones de invierno',desc:'Hasta el 17 de julio. Regreso lunes 20.',tags:['fp']},
+];
+
+/* ---- PIN / EDITOR ---- */
+function handleEditorBtn(){
+  if(isEditor){disableEditor();}else{document.getElementById('pin-bg').classList.add('open');document.getElementById('pin-input').focus();}
 }
-function move(d){go(Math.max(0,Math.min(N-1,cur+d)));}
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')move(1);if(e.key==='ArrowLeft')move(-1);});
+function checkPin(){
+  const v=document.getElementById('pin-input').value;
+  if(v===PIN){closePinModal();enableEditor();}
+  else{document.getElementById('pin-err').textContent='PIN incorrecto';document.getElementById('pin-input').value='';}
+}
+function closePinModal(){document.getElementById('pin-bg').classList.remove('open');document.getElementById('pin-input').value='';document.getElementById('pin-err').textContent='';}
+function enableEditor(){
+  isEditor=true;
+  document.getElementById('editor-btn').classList.add('on');
+  document.getElementById('editor-btn').title='Salir del modo editor';
+  ['editor-bar-cal','parser-section','editor-action-bar','editor-bar-sem','sem-editor-section'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.style.display='';
+  });
+  renderCal();
+}
+function disableEditor(){
+  isEditor=false;
+  document.getElementById('editor-btn').classList.remove('on');
+  document.getElementById('editor-btn').title='Modo editor';
+  ['editor-bar-cal','parser-section','editor-action-bar','editor-bar-sem','sem-editor-section'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.style.display='none';
+  });
+  renderCal();
+}
+
+/* ---- CALENDAR ---- */
+function sdot(ds){const d=new Date(ds+'T12:00:00'),diff=(d-TODAY)/86400000;return diff<0?'s-p':diff<=7?'s-s':'s-u';}
+function renderCal(){
+  const cal=document.getElementById('calendar');
+  const filtered=activeFilter==='all'?events:events.filter(e=>e.tags.includes(activeFilter));
+  if(!filtered.length){cal.innerHTML='<p style="text-align:center;color:#aaa;font-size:14px;padding:2rem 0">Sin eventos para este filtro.</p>';return;}
+  const byMonth={};
+  [...filtered].sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{const k=e.date.slice(0,7);if(!byMonth[k])byMonth[k]=[];byMonth[k].push(e);});
+  let html='';
+  Object.keys(byMonth).sort().forEach(k=>{
+    const[y,m]=k.split('-');
+    html+=`<div class="month-label">${MONTHS[+m-1]} ${y}</div>`;
+    byMonth[k].forEach(e=>{
+      const d=new Date(e.date+'T12:00:00'),dot=sdot(e.date);
+      const badges=e.tags.map(t=>TAG_DEF[t]?`<span class="badge ${TAG_DEF[t].cls}">${TAG_DEF[t].label}</span>`:'').join('');
+      const editable=isEditor?' editable':'';
+      const click=isEditor?`onclick="openModal(${e.id})":`:'';
+      html+=`<div class="erow${dot==='s-p'?' past':''}${editable}" ${isEditor?`onclick="openModal(${e.id})"`:''}>
+        <div class="dcol"><div class="dday">${d.getDate()}</div><div class="ddow">${DAYS[d.getDay()]}</div></div>
+        <div class="vline"></div>
+        <div class="ebody"><div class="etitle">${e.title}</div>${e.desc?`<div class="edesc">${e.desc}</div>`:''}<div class="ebadges">${badges}</div></div>
+        <span class="sdot ${dot}"></span>
+      </div>`;
+    });
+  });
+  cal.innerHTML=html;
+}
+document.getElementById('chips').addEventListener('click',e=>{
+  const c=e.target.closest('.chip');if(!c)return;
+  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+  c.classList.add('active');activeFilter=c.dataset.f;renderCal();
+});
+
+/* ---- MODAL ---- */
+function openModal(id){
+  editingId=id||null;
+  const tg=document.getElementById('tag-grid');
+  tg.innerHTML=Object.entries(TAG_DEF).map(([k,v])=>`<span class="tag-opt badge ${v.cls}" data-tag="${k}" onclick="toggleTag(this)">${v.label}</span>`).join('');
+  if(id){
+    const ev=events.find(e=>e.id===id);
+    document.getElementById('modal-title').textContent='Editar hito';
+    document.getElementById('ev-date').value=ev.date;
+    document.getElementById('ev-title').value=ev.title;
+    document.getElementById('ev-desc').value=ev.desc||'';
+    document.getElementById('btn-delete').style.display='flex';
+    ev.tags.forEach(t=>{const el=tg.querySelector(`[data-tag="${t}"]`);if(el)el.classList.add('sel');});
+  }else{
+    document.getElementById('modal-title').textContent='Agregar hito';
+    ['ev-date','ev-title','ev-desc'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('btn-delete').style.display='none';
+  }
+  document.getElementById('modal-bg').classList.add('open');
+}
+function closeModal(){document.getElementById('modal-bg').classList.remove('open');}
+function toggleTag(el){el.classList.toggle('sel');}
+function saveEvent(){
+  const date=document.getElementById('ev-date').value,title=document.getElementById('ev-title').value.trim();
+  if(!date||!title)return;
+  const tags=[...document.querySelectorAll('.tag-opt.sel')].map(e=>e.dataset.tag);
+  const desc=document.getElementById('ev-desc').value.trim();
+  if(editingId){const ev=events.find(e=>e.id===editingId);ev.date=date;ev.title=title;ev.desc=desc;ev.tags=tags;}
+  else events.push({id:nextId++,date,title,desc,tags});
+  closeModal();renderCal();
+}
+function deleteEvent(){if(!editingId)return;events=events.filter(e=>e.id!==editingId);closeModal();renderCal();}
+
+/* ---- PARSER CALENDARIO ---- */
+async function parseText(){
+  const raw=document.getElementById('parse-input').value.trim();
+  if(!raw)return;
+  const btn=document.getElementById('btn-parse');
+  const status=document.getElementById('parse-status');
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Interpretando...';status.textContent='';
+  document.getElementById('parsed-results').innerHTML='';document.getElementById('parse-actions').style.display='none';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:`Eres un asistente que extrae hitos de calendario desde texto libre en español chileno. Hoy es 2026-06-03. Contexto: colegio Pumahue Puerto Montt.
+Extrae TODOS los hitos con fecha. Para cada uno devuelve JSON con:
+- date: YYYY-MM-DD (año 2026 si no se especifica)
+- title: título corto (máx 60 chars)
+- desc: descripción breve opcional (máx 120 chars), vacío si no hay
+- tags: array con etiquetas de esta lista exacta:
+  "sc"=sin clases/feriado/colegio cerrado
+  "sa"=salida anticipada/jornada reducida
+  "ec"=evento del colegio
+  "fp"=fin de período/vacaciones/término semestre
+  "rc"=recordatorio (útiles, ropa, etc)
+  "cu"=actividad del curso
+Responde SOLO con array JSON válido, sin markdown ni explicaciones.
+Texto: ${raw}`}]})});
+    const data=await res.json();
+    const text=data.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim();
+    parsedHitos=JSON.parse(text);
+    renderParsedHitos();
+    status.textContent=`${parsedHitos.length} hito${parsedHitos.length!==1?'s':''} detectado${parsedHitos.length!==1?'s':''}`;
+  }catch(e){status.textContent='Error al interpretar. Revisá la conexión.';console.error(e);}
+  btn.disabled=false;btn.innerHTML='<i class="ti ti-sparkles"></i> Interpretar con IA';
+}
+function renderParsedHitos(){
+  const c=document.getElementById('parsed-results');
+  if(!parsedHitos.length){c.innerHTML='<p style="font-size:13px;color:#888">No se detectaron fechas.</p>';return;}
+  c.innerHTML=parsedHitos.map((h,i)=>{
+    const d=new Date(h.date+'T12:00:00');
+    const ds=isNaN(d)?h.date:`${DAYS[d.getDay()]} ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
+    const badges=(h.tags||[]).map(t=>TAG_DEF[t]?`<span class="badge ${TAG_DEF[t].cls}">${TAG_DEF[t].label}</span>`:'').join('');
+    return`<div class="parsed-item sel" id="pi-${i}">
+      <div class="pcheck on" id="pc-${i}" onclick="toggleParsed(${i})"><i class="ti ti-check" style="font-size:11px"></i></div>
+      <div class="pbody"><div class="pdate">${ds} · ${h.date}</div><div class="ptitle">${h.title}</div>${h.desc?`<div class="pdesc">${h.desc}</div>`:''}<div class="ebadges" style="margin-top:5px">${badges}</div></div>
+    </div>`;
+  }).join('');
+  document.getElementById('parse-actions').style.display='flex';
+}
+function toggleParsed(i){const item=document.getElementById('pi-'+i),check=document.getElementById('pc-'+i),on=check.classList.toggle('on');item.classList.toggle('sel',on);check.innerHTML=on?'<i class="ti ti-check" style="font-size:11px"></i>':'';}
+function selectAll(){parsedHitos.forEach((_,i)=>{document.getElementById('pi-'+i).classList.add('sel');const c=document.getElementById('pc-'+i);c.classList.add('on');c.innerHTML='<i class="ti ti-check" style="font-size:11px"></i>';});}
+function addSelected(){
+  let added=0;
+  parsedHitos.forEach((_,i)=>{if(!document.getElementById('pi-'+i).classList.contains('sel'))return;const h=parsedHitos[i];if(!h.date||!h.title)return;events.push({id:nextId++,date:h.date,title:h.title,desc:h.desc||'',tags:h.tags||[]});added++;});
+  renderCal();clearParser();if(added)toast(`${added} hito${added!==1?'s':''} agregado${added!==1?'s':''} ✓`);
+}
+function clearParser(){document.getElementById('parse-input').value='';document.getElementById('parsed-results').innerHTML='';document.getElementById('parse-actions').style.display='none';document.getElementById('parse-status').textContent='';parsedHitos=[];}
+
+/* ---- SEMANA ---- */
+function getWeekDates(offset){
+  const d=new Date(TODAY);
+  const day=d.getDay(),diff=d.getDate()-day+(day===0?-6:1);
+  d.setDate(diff+offset*7);
+  return Array.from({length:5},(_,i)=>{const x=new Date(d);x.setDate(d.getDate()+i);return x;});
+}
+function changeWeek(dir){weekOffset+=dir;renderSemana();}
+function renderSemana(){
+  const dates=getWeekDates(weekOffset);
+  const start=dates[0],end=dates[4];
+  document.getElementById('week-label').textContent=`${start.getDate()} ${MONTHS[start.getMonth()].slice(0,3)} – ${end.getDate()} ${MONTHS[end.getMonth()].slice(0,3)} ${end.getFullYear()}`;
+  const key=start.toISOString().slice(0,10);
+  const items=semanaData[key]||[];
+  const JMAP={jn:{dot:'jn',tag:'tag-jn',label:'Jornada normal'},je:{dot:'je',tag:'tag-je',label:'Jornada extendida'},ja:{dot:'ja',tag:'tag-ja',label:'Ambas jornadas'}};
+  let html='';
+  dates.forEach(date=>{
+    const dateStr=date.toISOString().slice(0,10);
+    const dayItems=items.filter(it=>it.date===dateStr);
+    html+=`<div class="day-card">
+      <div class="day-header"><span class="day-name">${DAYS[date.getDay()]}</span><span class="day-date">${date.getDate()} de ${MONTHS[date.getMonth()]}</span></div>
+      <div class="day-items">`;
+    if(dayItems.length){
+      dayItems.forEach(it=>{
+        const j=JMAP[it.jornada]||JMAP.jn;
+        html+=`<div class="day-item"><span class="jornada-dot ${j.dot}"></span><span class="day-item-text">${it.text}</span><span class="day-item-tag ${j.tag}">${j.label}</span></div>`;
+      });
+    }else{html+=`<div class="empty-day">Sin ítems para este día</div>`;}
+    html+='</div></div>';
+  });
+  document.getElementById('week-content').innerHTML=html;
+}
+
+async function parseSemana(){
+  const raw=document.getElementById('sem-input').value.trim();
+  if(!raw)return;
+  const btn=document.getElementById('btn-sem-parse');
+  const status=document.getElementById('sem-status');
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Interpretando...';status.textContent='';
+  document.getElementById('sem-parsed').innerHTML='';document.getElementById('sem-actions').style.display='none';
+  const dates=getWeekDates(weekOffset);
+  const weekStr=dates.map((d,i)=>`${DAYS[d.getDay()]} ${d.toISOString().slice(0,10)}`).join(', ');
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:`Eres un asistente que organiza recordatorios semanales de un jardín infantil en Chile.
+La semana tiene estos días: ${weekStr}
+Extrae los ítems del texto (cosas que llevar, actividades, avisos) y asígnalos al día correcto.
+Para cada ítem devuelve:
+- date: YYYY-MM-DD del día correspondiente
+- text: descripción breve del ítem (máx 80 chars)
+- jornada: "jn" (jornada normal), "je" (jornada extendida/after), "ja" (ambas). Si no se especifica, usa "jn".
+Responde SOLO con array JSON, sin markdown ni explicaciones.
+Texto: ${raw}`}]})});
+    const data=await res.json();
+    const text=data.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim();
+    parsedSem=JSON.parse(text);
+    renderParsedSem();
+    status.textContent=`${parsedSem.length} ítem${parsedSem.length!==1?'s':''} detectado${parsedSem.length!==1?'s':''}`;
+  }catch(e){status.textContent='Error al interpretar.';console.error(e);}
+  btn.disabled=false;btn.innerHTML='<i class="ti ti-sparkles"></i> Interpretar con IA';
+}
+function renderParsedSem(){
+  const c=document.getElementById('sem-parsed');
+  const JLABEL={jn:'Jornada normal',je:'Jornada extendida',ja:'Ambas'};
+  const JCLS={jn:'tag-jn',je:'tag-je',ja:'tag-ja'};
+  if(!parsedSem.length){c.innerHTML='<p style="font-size:13px;color:#888">No se detectaron ítems.</p>';return;}
+  c.innerHTML=parsedSem.map((it,i)=>{
+    const d=new Date(it.date+'T12:00:00');
+    const ds=isNaN(d)?it.date:`${DAYS[d.getDay()]} ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
+    return`<div class="parsed-item sel" style="align-items:center">
+      <div class="pbody"><div class="pdate">${ds}</div><div class="ptitle" style="font-size:13px;font-weight:400">${it.text}</div></div>
+      <span class="day-item-tag ${JCLS[it.jornada]||'tag-jn'}">${JLABEL[it.jornada]||'Jornada normal'}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('sem-actions').style.display='flex';
+}
+function publishSemana(){
+  const dates=getWeekDates(weekOffset);
+  const key=dates[0].toISOString().slice(0,10);
+  semanaData[key]=parsedSem;
+  clearSemParser();renderSemana();
+  toast('Semana publicada ✓');
+}
+function clearSemParser(){document.getElementById('sem-input').value='';document.getElementById('sem-parsed').innerHTML='';document.getElementById('sem-actions').style.display='none';document.getElementById('sem-status').textContent='';parsedSem=[];}
+
+/* ---- NAV ---- */
+function showPage(p,el){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  if(el)el.classList.add('active');
+}
+
+/* ---- TOAST ---- */
+function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;t.style.opacity='0';document.body.appendChild(t);requestAnimationFrame(()=>{t.style.opacity='1';setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.remove(),300)},2500);});}
+
+renderCal();
+renderSemana();
 </script>
 </body>
 </html>
